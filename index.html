@@ -8,12 +8,16 @@
         :root {
             --primary-gold: #c5a059;
             --header-bg: #000000;
-            --body-bg: #f4f7f6;
             
-            /* لون الرموز الجديد (رمادي مزرق) من الصورة */
+            /* خلفية الصفحة أبيض ناصع */
+            --body-bg: #ffffff; 
+            
+            /* خلفية الخيارات (أغمق قليلاً من خلفية الصفحة للتباين) */
+            --card-bg: #f8fafc; 
+            
+            /* لون الرموز والسهوم (رمادي مزرق) */
             --icon-color: #94a3b8; 
-            /* لون خلفية الأيقونة الفاتح جداً */
-            --icon-bg-light: #f1f5f9; 
+            --icon-bg-circle: #eff6ff; 
         }
         
         body {
@@ -30,12 +34,12 @@
             padding: 50px 0; 
             text-align: center; 
             color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         
         .header h1 { color: var(--primary-gold); margin: 10px 0; font-size: 1.8rem; }
 
-        /* حاوية الخيارات - بعيدة عن الهيدر */
+        /* حاوية الخيارات */
         .menu-container { 
             width: 90%; 
             max-width: 500px; 
@@ -44,58 +48,59 @@
         }
         
         .menu-item {
-            background-color: #ffffff;
+            background-color: var(--card-bg); /* لون البطاقة */
             margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 16px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: #333;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            color: #334155;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             transition: 0.3s ease;
+            border: 1px solid #e2e8f0;
         }
 
-        .menu-item:hover { transform: scale(1.02); box-shadow: 0 6px 15px rgba(0,0,0,0.12); }
+        .menu-item:hover { transform: translateY(-3px); background-color: #f1f5f9; }
 
-        /* أيقونات دائرية فاتحة */
+        /* أيقونات دائرية */
         .icon-circle {
-            width: 50px;
-            height: 50px;
-            background-color: var(--icon-bg-light); /* خلفية فاتحة مثل الصورة */
+            width: 52px;
+            height: 52px;
+            background-color: #ffffff; /* خلفية الأيقونة بيضاء لتبرز داخل البطاقة */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-left: 15px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
-        /* تلوين كل الأيقونات باللون الرمادي المزرق */
-        .icon-circle svg { width: 24px; height: 24px; fill: var(--icon-color); }
+        .icon-circle svg { width: 26px; height: 26px; fill: var(--icon-color); }
 
         .menu-text-container { flex-grow: 1; text-align: right; }
-        .main-text { display: block; font-size: 1.1rem; font-weight: bold; }
-        .sub-desc { display: block; font-size: 0.8rem; color: #888; }
+        .main-text { display: block; font-size: 1.1rem; font-weight: 700; color: #1e293b; }
+        .sub-desc { display: block; font-size: 0.85rem; color: #64748b; margin-top: 2px; }
         
-        /* تنسيق سهم الرجوع (←) */
+        /* سهم الرجوع الدائري */
         .arrow-container {
-            width: 35px;
-            height: 35px;
-            background-color: var(--icon-bg-light); /* خلفية السهم الدائرية الفاتحة */
+            width: 38px;
+            height: 38px;
+            background-color: #ffffff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-right: 10px;
+            border: 1px solid #f1f5f9;
         }
-        /* السهم الرفيع الملون بالرمادي المزرق */
-        .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
+        .arrow-container svg { width: 20px; height: 20px; fill: var(--icon-color); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2 style="margin:0;">وزارة الصحة</h2>
-        <small style="color:var(--primary-gold);">MINISTRY OF HEALTH</small>
+        <h2 style="margin:0; font-weight: 400;">وزارة الصحة</h2>
+        <small style="color:var(--primary-gold); font-weight: bold; letter-spacing: 1px;">MINISTRY OF HEALTH</small>
         <h1>موقع وزارة الصحة | KR</h1>
     </div>
 
@@ -181,9 +186,10 @@
 
     </div>
 
-    <div style="padding: 20px; color:#888; font-size:0.8rem; margin-top: auto; margin-bottom: 20px;">
+    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem; margin-top: auto;">
         © 2026 وزارة الصحة | KR
     </div>
 
 </body>
 </html>
+
