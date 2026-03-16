@@ -3,177 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع وزارة الصحة | KR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>بوابة وزارة الصحة | KR</title>
     <style>
         :root {
-            --dark-bg: #000000;
-            --gold: #c5a059;
-            --card-gray: #0d0d0d;
-            --text-gray: #828282; 
-            --white: #ffffff;
+            --primary-gold: #c5a059;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
         }
-
-        body { 
-            margin: 0; padding: 0; font-family: 'Cairo', sans-serif; 
-            background-color: var(--white); text-align: right; 
-        }
-
-        /* --- الهيدر والبطاقة (الجزء الأسود) --- */
-        .hero-section {
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--dark-bg);
             color: white;
-            padding: 20px 20px 60px 20px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
+            display: flex; flex-direction: column; align-items: center;
         }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        .logo-text h2 { font-size: 1rem; margin: 0; font-weight: 700; color: white; }
-        .logo-text p { font-size: 0.65rem; margin: 0; color: #666; }
-
-        .hero-title {
-            font-size: 2.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin: 0 0 15px 0;
-        }
-        .hero-subtitle {
-            color: #888;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 45px;
-        }
-
-        /* بطاقة التقديم */
-        .apply-card {
-            background-color: var(--card-gray);
-            border: 1px solid #1a1a1a;
-            border-radius: 28px;
-            padding: 35px 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-        }
-
-        .card-icon { 
-            background: #1a1a1a; 
-            width: 50px; height: 50px; 
-            border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 20px;
-        }
-
-        /* تعديل الألوان هنا */
-        .apply-card h3 { 
-            font-size: 1.65rem; 
-            margin: 0; 
-            font-weight: 700; 
-            color: var(--white); /* التقديم الإلكتروني بالأبيض */
-        }
-
-        .apply-card p { 
-            color: var(--text-gray); /* انضم لكوادرنا بالرصاصي */
-            font-size: 1.1rem; 
-            margin: 15px 0 35px; 
-        }
-
-        .btn-group { display: flex; gap: 15px; }
-        .btn-gold { 
-            background-color: var(--gold); color: black; border: none; 
-            padding: 15px; border-radius: 14px; font-weight: bold; 
-            flex: 1; text-align: center; cursor: pointer; text-decoration: none;
-            font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 5px;
-        }
-        .btn-outline { 
-            background: transparent; color: white; border: 1px solid #222; 
-            padding: 15px; border-radius: 14px; font-weight: bold; 
-            flex: 1; text-align: center; cursor: pointer;
-        }
-
-        /* --- القائمة السفلية (الجزء الأبيض) --- */
-        .bottom-content {
-            padding: 45px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .list-option {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 20px;
-            padding: 22px;
+        .header { padding: 40px 20px; text-align: center; }
+        .header h1 { color: var(--primary-gold); margin: 0; border-bottom: 2px solid var(--primary-gold); display: inline-block; padding-bottom: 10px; }
+        
+        .menu-container { width: 90%; max-width: 500px; margin-top: 20px; }
+        
+        .menu-item {
+            background-color: var(--card-bg);
             margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .list-option h4 { margin: 0; font-size: 1rem; color: #111; font-weight: 600; }
-        .list-option .arrow { color: #ddd; }
+        .menu-item:hover { transform: translateY(-3px); background-color: #252525; }
 
+        /* دائرة الأيقونة */
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background-color: #f8f9fa; /* لون خلفية فاتح للأيقونة مثل الصورة */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 15px; /* مسافة بين الأيقونة والنص */
+        }
+        .icon-circle svg { width: 25px; height: 25px; fill: #4a5568; }
+
+        .menu-text { flex-grow: 1; font-size: 1.1rem; font-weight: 500; text-align: right; }
+        .arrow { color: #888; font-size: 1.2rem; margin-right: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="hero-section">
-        <header>
-            <div class="logo-box">
-                <div class="logo-text">
-                    <h2>وزارة الصحة</h2>
-                    <p>Ministry of Health</p>
-                </div>
-                <span style="color:var(--gold); font-size: 1.5rem;">⚕️</span>
-            </div>
-            <div style="font-size: 1.8rem; cursor: pointer;">☰</div>
-        </header>
-
-        <h1 class="hero-title">موقع وزارة الصحة | KR</h1>
-        <p class="hero-subtitle">موقع وزارة الصحة، يمكن للزائرين الاستفادة من الخدمات الإلكترونية مثل حجز المواعيد.</p>
-
-        <div class="apply-card">
-            <div class="card-icon">📝</div>
-            <h3>التقديم الإلكتروني</h3>
-            <p>انضم لكوادرنا الآن</p> 
-
-            <div class="btn-group">
-                <a href="#" class="btn-gold">تقديم الآن ↗</a>
-                <button class="btn-outline">تفاصيل التقديم</button>
-            </div>
-        </div>
+    <div class="header">
+        <h1>موقع وزارة الصحة | KR</h1>
     </div>
 
-    <div class="bottom-content">
-        <div class="list-option">
-            <h4>⚖️ رسوم العمليات</h4>
+    <div class="menu-container">
+        
+        <a href="https://docs.google.com/forms/d/1Rhoc24xUe4_1mWfbbOaNCXNAlV7spviB_cWI3EQMgdo/viewform" class="menu-item" target="_blank">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M12 3L4 8V11C4 13.5 5.5 15.8 7.5 17.3L12 21L16.5 17.3C18.5 15.8 20 13.5 20 11V8L12 3M12 5.5L18 9.2V11C18 12.8 17 14.5 15.4 15.7L12 18.5L8.6 15.7C7 14.5 6 12.8 6 11V9.2L12 5.5Z"/></svg>
+            </div>
+            <span class="menu-text">الاقتراحات والشكاوى</span>
             <span class="arrow">←</span>
-        </div>
-        <div class="list-option">
-            <h4>📅 حجز المواعيد</h4>
+        </a>
+
+        <a href="https://discord.com/channels/851534602576461854/878551331508486224" class="menu-item" target="_blank">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.9 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg>
+            </div>
+            <span class="menu-text">حجز المواعيد</span>
             <span class="arrow">←</span>
-        </div>
-        <div class="list-option">
-            <h4>👔 قيادة الوزارة</h4>
+        </a>
+
+        <a href="operations.html" class="menu-item">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M20,6H16V4A2,2 0 0,0 14,2H10A2,2 0 0,0 8,4V6H4C2.89,6 2,6.89 2,8V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V8C22,6.89 21.1,6 20,6M10,4H14V6H10V4M20,19H4V8H20V19Z"/></svg>
+            </div>
+            <span class="menu-text">رسم العمليات</span>
             <span class="arrow">←</span>
-        </div>
-        <div class="list-option">
-            <h4>🎯 أهداف الوزارة</h4>
+        </a>
+
+        <a href="goals.html" class="menu-item">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+            </div>
+            <span class="menu-text">أهداف الوزارة</span>
             <span class="arrow">←</span>
-        </div>
-        <div class="list-option">
-            <h4>📩 الاقتراحات والشكاوى</h4>
+        </a>
+
+        <a href="leaders.html" class="menu-item">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24"><path d="M12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12M12,14C9.33,14 4,15.33 4,18V20H20V18C20,15.33 14.67,14 12,14Z"/></svg>
+            </div>
+            <span class="menu-text">قيادة الوزارة</span>
             <span class="arrow">←</span>
-        </div>
+        </a>
+
     </div>
 
-    <footer style="text-align: center; padding: 30px; color: #bbb; font-size: 0.8rem;">
+    <div class="footer">
         © 2026 وزارة الصحة | KR
-    </footer>
+    </div>
 
 </body>
 </html>
-
