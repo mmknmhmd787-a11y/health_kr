@@ -8,7 +8,12 @@
         :root {
             --primary-gold: #c5a059;
             --header-bg: #000000;
-            --body-bg: #f4f7f6; /* لون خلفية الصفحة فاتح جداً ليفصل عن الأبيض */
+            --body-bg: #f4f7f6;
+            
+            /* لون الرموز الجديد (رمادي مزرق) من الصورة */
+            --icon-color: #94a3b8; 
+            /* لون خلفية الأيقونة الفاتح جداً */
+            --icon-bg-light: #f1f5f9; 
         }
         
         body {
@@ -34,12 +39,12 @@
         .menu-container { 
             width: 90%; 
             max-width: 500px; 
-            margin-top: 40px; /* مسافة كافية لتبتعد عن الهيدر */
+            margin-top: 40px; 
             padding-bottom: 50px;
         }
         
         .menu-item {
-            background-color: #ffffff; /* خلفية الخيار بيضاء */
+            background-color: #ffffff;
             margin-bottom: 15px;
             padding: 15px;
             border-radius: 15px;
@@ -47,7 +52,7 @@
             align-items: center;
             text-decoration: none;
             color: #333;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* ظل خفيف */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: 0.3s ease;
         }
 
@@ -57,20 +62,33 @@
         .icon-circle {
             width: 50px;
             height: 50px;
-            background-color: #f8f9fa; 
+            background-color: var(--icon-bg-light); /* خلفية فاتحة مثل الصورة */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-left: 15px;
         }
-        .icon-circle svg { width: 24px; height: 24px; fill: #5a67d8; }
+        /* تلوين كل الأيقونات باللون الرمادي المزرق */
+        .icon-circle svg { width: 24px; height: 24px; fill: var(--icon-color); }
 
         .menu-text-container { flex-grow: 1; text-align: right; }
         .main-text { display: block; font-size: 1.1rem; font-weight: bold; }
         .sub-desc { display: block; font-size: 0.8rem; color: #888; }
         
-        .arrow { color: #ccc; font-size: 1.2rem; margin-right: 10px; }
+        /* تنسيق سهم الرجوع (←) */
+        .arrow-container {
+            width: 35px;
+            height: 35px;
+            background-color: var(--icon-bg-light); /* خلفية السهم الدائرية الفاتحة */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        /* السهم الرفيع الملون بالرمادي المزرق */
+        .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
     </style>
 </head>
 <body>
@@ -91,7 +109,9 @@
                 <span class="main-text">التقديم الإلكتروني</span>
                 <span class="sub-desc">انضم إلى فريقنا الطبي</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
         <a href="operations.html" class="menu-item">
@@ -102,7 +122,9 @@
                 <span class="main-text">رسوم العمليات</span>
                 <span class="sub-desc">تفاصيل التكاليف والخدمات</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
         <a href="https://discord.com/channels/851534602576461854/878551331508486224" class="menu-item" target="_blank">
@@ -113,7 +135,9 @@
                 <span class="main-text">حجز المواعيد</span>
                 <span class="sub-desc">تنسيق مواعيد المراجعة</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
         <a href="leaders.html" class="menu-item">
@@ -124,7 +148,9 @@
                 <span class="main-text">قيادة الوزارة</span>
                 <span class="sub-desc">الهيكل الإداري والمسؤولين</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
         <a href="goals.html" class="menu-item">
@@ -135,7 +161,9 @@
                 <span class="main-text">أهداف الوزارة</span>
                 <span class="sub-desc">رؤيتنا وخططنا التطويرية</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
         <a href="https://docs.google.com/forms/d/1Rhoc24xUe4_1mWfbbOaNCXNAlV7spviB_cWI3EQMgdo/viewform" class="menu-item" target="_blank">
@@ -146,12 +174,14 @@
                 <span class="main-text">الاقتراحات والشكاوى</span>
                 <span class="sub-desc">تواصل معنا مباشرة</span>
             </div>
-            <span class="arrow">←</span>
+            <div class="arrow-container">
+                <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+            </div>
         </a>
 
     </div>
 
-    <div style="padding: 20px; color:#888; font-size:0.8rem;">
+    <div style="padding: 20px; color:#888; font-size:0.8rem; margin-top: auto; margin-bottom: 20px;">
         © 2026 وزارة الصحة | KR
     </div>
 
