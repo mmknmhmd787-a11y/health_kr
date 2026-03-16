@@ -8,16 +8,10 @@
         :root {
             --primary-gold: #c5a059;
             --header-bg: #000000;
-            
-            /* خلفية الصفحة أبيض ناصع */
-            --body-bg: #ffffff; 
-            
-            /* خلفية الخيارات (أغمق قليلاً من خلفية الصفحة للتباين) */
-            --card-bg: #f8fafc; 
-            
-            /* لون الرموز والسهوم (رمادي مزرق) */
-            --icon-color: #94a3b8; 
-            --icon-bg-circle: #eff6ff; 
+            --body-bg: #ffffff; /* الخلفية بيضاء ناصعة */
+            --card-bg: #fcfcfc; /* أبيض مطفي "أوف وايت" خفيف جداً للبطاقة */
+            --icon-color: #94a3b8; /* الرمادي المزرق للرموز والسهوم */
+            --circle-bg: #ffffff; 
         }
         
         body {
@@ -34,21 +28,21 @@
             padding: 50px 0; 
             text-align: center; 
             color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .header h1 { color: var(--primary-gold); margin: 10px 0; font-size: 1.8rem; }
 
         /* حاوية الخيارات */
         .menu-container { 
-            width: 90%; 
+            width: 92%; 
             max-width: 500px; 
             margin-top: 40px; 
             padding-bottom: 50px;
         }
         
         .menu-item {
-            background-color: var(--card-bg); /* لون البطاقة */
+            background-color: var(--card-bg);
             margin-bottom: 15px;
             padding: 16px;
             border-radius: 20px;
@@ -56,44 +50,46 @@
             align-items: center;
             text-decoration: none;
             color: #334155;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            /* ظل ناعم جداً لتمييز البطاقة عن الخلفية البيضاء */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
             transition: 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #f3f4f6;
         }
 
-        .menu-item:hover { transform: translateY(-3px); background-color: #f1f5f9; }
+        .menu-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 
-        /* أيقونات دائرية */
+        /* دائرة الأيقونة اليمنى */
         .icon-circle {
-            width: 52px;
-            height: 52px;
-            background-color: #ffffff; /* خلفية الأيقونة بيضاء لتبرز داخل البطاقة */
+            width: 50px;
+            height: 50px;
+            background-color: var(--circle-bg); 
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-left: 15px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        .icon-circle svg { width: 26px; height: 26px; fill: var(--icon-color); }
+        .icon-circle svg { width: 24px; height: 24px; fill: var(--icon-color); }
 
         .menu-text-container { flex-grow: 1; text-align: right; }
-        .main-text { display: block; font-size: 1.1rem; font-weight: 700; color: #1e293b; }
-        .sub-desc { display: block; font-size: 0.85rem; color: #64748b; margin-top: 2px; }
+        .main-text { display: block; font-size: 1.1rem; font-weight: bold; color: #1e293b; }
+        .sub-desc { display: block; font-size: 0.8rem; color: #64748b; margin-top: 2px; }
         
-        /* سهم الرجوع الدائري */
+        /* دائرة السهم اليسرى (مثل الصورة) */
         .arrow-container {
             width: 38px;
             height: 38px;
-            background-color: #ffffff;
+            background-color: var(--circle-bg);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-right: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             border: 1px solid #f1f5f9;
         }
-        .arrow-container svg { width: 20px; height: 20px; fill: var(--icon-color); }
+        .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
     </style>
 </head>
 <body>
@@ -112,7 +108,7 @@
             </div>
             <div class="menu-text-container">
                 <span class="main-text">التقديم الإلكتروني</span>
-                <span class="sub-desc">انضم إلى فريقنا الطبي</span>
+                <span class="sub-desc">انضم لكوادرنا الآن</span>
             </div>
             <div class="arrow-container">
                 <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
@@ -121,24 +117,24 @@
 
         <a href="operations.html" class="menu-item">
             <div class="icon-circle">
-                <svg viewBox="0 0 24 24"><path d="M20,6H16V4A2,2 0 0,0 14,2H10A2,2 0 0,0 8,4V6H4C2.89,6 2,6.89 2,8V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V8C22,6.89 21.1,6 20,6M10,4H14V6H10V4M20,19H4V8H20V19Z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12,3A1,1 0 0,1 13,4V5H19V7H18V18A3,3 0 0,1 15,21H9A3,3 0 0,1 6,18V7H5V5H11V4A1,1 0 0,1 12,3M16,7H8V18A1,1 0 0,0 9,19H15A1,1 0 0,0 16,18V7M11,9H13V17H11V9M12,12.5L12,12.5Z"/></svg>
             </div>
             <div class="menu-text-container">
                 <span class="main-text">رسوم العمليات</span>
-                <span class="sub-desc">تفاصيل التكاليف والخدمات</span>
+                <span class="sub-desc">تكاليف الخدمات الصحية</span>
             </div>
             <div class="arrow-container">
                 <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
             </div>
         </a>
 
-        <a href="https://discord.com/channels/851534602576461854/878551331508486224" class="menu-item" target="_blank">
+        <a href="#" class="menu-item">
             <div class="icon-circle">
                 <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.9 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg>
             </div>
             <div class="menu-text-container">
                 <span class="main-text">حجز المواعيد</span>
-                <span class="sub-desc">تنسيق مواعيد المراجعة</span>
+                <span class="sub-desc">حدد موعد زيارتك</span>
             </div>
             <div class="arrow-container">
                 <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
@@ -147,11 +143,11 @@
 
         <a href="leaders.html" class="menu-item">
             <div class="icon-circle">
-                <svg viewBox="0 0 24 24"><path d="M12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12M12,14C9.33,14 4,15.33 4,18V20H20V18C20,15.33 14.67,14 12,14Z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V8A2,2 0 0,1 4,6H8V4A2,2 0 0,1 10,2M14,6V4H10V6H14Z"/></svg>
             </div>
             <div class="menu-text-container">
                 <span class="main-text">قيادة الوزارة</span>
-                <span class="sub-desc">الهيكل الإداري والمسؤولين</span>
+                <span class="sub-desc">الهيكل الإداري</span>
             </div>
             <div class="arrow-container">
                 <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
@@ -164,16 +160,16 @@
             </div>
             <div class="menu-text-container">
                 <span class="main-text">أهداف الوزارة</span>
-                <span class="sub-desc">رؤيتنا وخططنا التطويرية</span>
+                <span class="sub-desc">رؤيتنا المستقبلية</span>
             </div>
             <div class="arrow-container">
                 <svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
             </div>
         </a>
 
-        <a href="https://docs.google.com/forms/d/1Rhoc24xUe4_1mWfbbOaNCXNAlV7spviB_cWI3EQMgdo/viewform" class="menu-item" target="_blank">
+        <a href="#" class="menu-item">
             <div class="icon-circle">
-                <svg viewBox="0 0 24 24"><path d="M12,3L4,8V11C4,13.5 5.5,15.8 7.5,17.3L12,21L16.5,17.3C18.5,15.8 20,13.5 20,11V8L12,3M12,5.5L18,9.2V11C18,12.8 17,14.5 15.4,15.7L12,18.5L8.6,15.7C7,14.5 6,12.8 6,11V9.2L12,5.5Z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
             </div>
             <div class="menu-text-container">
                 <span class="main-text">الاقتراحات والشكاوى</span>
@@ -186,10 +182,9 @@
 
     </div>
 
-    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem; margin-top: auto;">
+    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem;">
         © 2026 وزارة الصحة | KR
     </div>
 
 </body>
 </html>
-
