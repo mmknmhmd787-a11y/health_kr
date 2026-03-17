@@ -6,174 +6,172 @@
     <title>بوابة وزارة الصحة | KR</title>
     <style>
         :root {
-            --primary-gold: #c5a059;
-            --header-bg: #000000;
-            --body-bg: #ffffff;
-            --card-bg: #fcfcfc;
-            --icon-color: #94a3b8;
-            --circle-bg: #ffffff;
+            /* الألوان المستخرجة من صورتك */
+            --main-bg: #fce4ec; /* الوردي الفاتح جداً للخلفية */
+            --card-bg: #ffffff; /* أبيض ناصع للبطاقات */
+            --accent-pink: #f8bbd0; /* وردي أغمق قليلاً للأيقونات */
+            --text-dark: #4a154b; /* رمادي بنفسجي غامق للنصوص */
+            --sub-text: #880e4f; /* وردي غامق للوصف */
         }
         
         body {
             margin: 0; padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background-color: var(--body-bg);
+            background-color: var(--main-bg);
             display: flex; flex-direction: column; align-items: center;
         }
 
         .header { 
-            background-color: var(--header-bg); 
             width: 100%; 
-            padding: 50px 0; 
+            padding: 40px 0; 
             text-align: center; 
-            color: white;
         }
         
-        .header h1 { color: var(--primary-gold); margin: 10px 0; font-size: 1.8rem; }
+        .header h1 { 
+            color: var(--text-dark); 
+            margin: 0; 
+            font-size: 1.8rem; 
+            font-weight: bold;
+        }
+        .header .sub-brand {
+            color: var(--accent-pink);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
+        }
 
         .menu-container { 
-            width: 92%; 
-            max-width: 500px; 
-            margin-top: 40px; 
+            width: 90%; 
+            max-width: 450px; 
+            margin-top: 10px; 
         }
         
         .menu-item {
             background-color: var(--card-bg);
-            margin-bottom: 15px;
-            padding: 16px;
-            border-radius: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 25px;
             display: flex;
+            flex-direction: column; /* جعل العناصر تحت بعض مثل الصورة */
             align-items: center;
             text-decoration: none;
-            color: #334155;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
-            border: 1px solid #f3f4f6;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03); 
+            transition: 0.3s;
         }
 
         .icon-circle {
-            width: 50px; height: 50px;
-            background-color: var(--circle-bg); 
+            width: 60px; height: 60px;
+            background-color: #fff5f8; 
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            margin-left: 15px;
+            margin-bottom: 15px;
         }
-        .icon-circle svg { width: 24px; height: 24px; fill: var(--icon-color); }
+        /* أيقونة سماعة الطبيب أو أيقونة طبية بلون وردي */
+        .icon-circle svg { width: 30px; height: 30px; fill: var(--accent-pink); }
 
-        .menu-text-container { flex-grow: 1; text-align: right; }
-        .main-text { display: block; font-size: 1.1rem; font-weight: bold; color: #1e293b; }
-        .sub-desc { display: block; font-size: 0.8rem; color: #64748b; }
-        
-        .arrow-container {
-            width: 38px; height: 38px;
-            background-color: var(--circle-bg);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            margin-right: 10px;
-            border: 1px solid #f1f5f9;
-        }
-        .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
+        .menu-text-container { text-align: center; }
+        .main-text { display: block; font-size: 1.2rem; font-weight: bold; color: var(--text-dark); }
+        .sub-desc { display: block; font-size: 0.9rem; color: #9e9e9e; margin-top: 8px; }
 
+        /* المعرض */
         .slider-wrapper {
-            width: 92%; max-width: 500px;
-            margin: 30px 0 60px 0;
-            position: relative;
+            width: 90%; max-width: 450px;
+            margin: 20px 0 50px 0;
         }
 
         .slider-container {
             width: 100%;
-            border-radius: 25px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             position: relative;
         }
 
         .slider-images {
             display: flex;
-            transition: transform 0.6s ease-in-out;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .slider-images img {
             width: 100%; flex-shrink: 0;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 4 / 3;
             object-fit: cover;
         }
 
         .slider-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 40px; height: 40px;
-            background-color: white;
+            width: 45px; height: 45px;
+            background-color: rgba(255, 255, 255, 0.9);
             border: none; border-radius: 50%;
-            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            display: flex; justify-content: center; align-items: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10;
         }
-
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
-        .slider-btn svg { width: 20px; height: 20px; fill: #333; }
+        .prev-btn { left: 15px; } .next-btn { right: 15px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2 style="margin:0;">وزارة الصحة</h2>
-        <small style="color:var(--primary-gold);">MINISTRY OF HEALTH</small>
-        <h1>موقع وزارة الصحة | KR</h1>
+        <h1>وزارة الصحة</h1>
+        <span class="sub-brand">KR MOH</span>
     </div>
 
     <div class="menu-container">
         <a href="#" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M16,11V13H8V11H16M16,15V17H8V15H16Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">التقديم الإلكتروني</span><span class="sub-desc">انضم لكوادرنا الآن</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg></div>
+            <div class="menu-text-container">
+                <span class="main-text">التقديم الإلكتروني</span>
+                <span class="sub-desc">انضم لكوادرنا الآن</span>
+            </div>
         </a>
 
         <a href="#" class="menu-item">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.9 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">حجز المواعيد</span><span class="sub-desc">حدد موعد زيارتك</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+            <div class="menu-text-container">
+                <span class="main-text">المواعيد</span>
+                <span class="sub-desc">احجز موعدك بسهولة</span>
+            </div>
         </a>
 
         <a href="#" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.97 19.05,5.05L16.56,6.05C16.04,5.65 15.44,5.32 14.87,5.07L14.44,2.42C14.39,2.19 14.2,2 14,2H10C9.8,2 9.61,2.19 9.56,2.42L9.13,5.07C8.56,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.97 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.95C7.96,18.34 8.56,18.68 9.13,18.93L9.56,21.58C9.61,21.81 9.8,22 10,22H14C14.2,22 14.39,21.81 14.44,21.58L14.87,18.93C15.44,18.67 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">الخدمات والأنظمة</span><span class="sub-desc">اللوائح والدليل الإجرائي</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/></svg></div>
+            <div class="menu-text-container">
+                <span class="main-text">الخدمات والأنظمة</span>
+                <span class="sub-desc">تصفح جميع الخدمات الصحية</span>
+            </div>
         </a>
 
         <a href="#" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">الاقتراحات والشكاوى</span><span class="sub-desc">تواصل معنا مباشرة</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20,2H4C2.89,2 2,2.89 2,4V16A2,2 0 0,0 4,18H18L22,22V4C22,2.89 21.1,2 20,2Z"/></svg></div>
+            <div class="menu-text-container">
+                <span class="main-text">الاقتراحات والشكاوى</span>
+                <span class="sub-desc">تواصل معنا مباشرة</span>
+            </div>
         </a>
     </div>
 
     <div class="slider-wrapper">
         <div class="slider-container">
             <div class="slider-images" id="slider">
-                <img src="1.png" alt="صورة 1">
-                <img src="2.png" alt="صورة 2">
-                <img src="3.png" alt="صورة 3">
-                <img src="4.png" alt="صورة 4">
+                <img src="1.png" alt="1">
+                <img src="2.png" alt="2">
+                <img src="3.png" alt="3">
+                <img src="4.png" alt="4">
             </div>
-            <button class="slider-btn prev-btn" onclick="moveSlider(-1)"><svg viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg></button>
-            <button class="slider-btn next-btn" onclick="moveSlider(1)"><svg viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg></button>
+            <button class="slider-btn prev-btn" onclick="moveSlider(-1)">❮</button>
+            <button class="slider-btn next-btn" onclick="moveSlider(1)">❯</button>
         </div>
     </div>
 
     <script>
         let currentIndex = 0;
         const slider = document.getElementById('slider');
-        const totalImages = 4;
-
-        function moveSlider(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = totalImages - 1;
-            if (currentIndex >= totalImages) currentIndex = 0;
+        function moveSlider(dir) {
+            currentIndex = (currentIndex + dir + 4) % 4;
             slider.style.transform = `translateX(${currentIndex * 100}%)`;
         }
     </script>
 
-    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem;">
-        © 2026 وزارة الصحة | KR
-    </div>
 </body>
 </html>
