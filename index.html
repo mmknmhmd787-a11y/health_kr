@@ -9,7 +9,7 @@
             --primary-gold: #c5a059;
             --header-bg: #000000;
             --body-bg: #ffffff;
-            --card-bg: #fcfcfc;
+            --card-bg: #fcfcfc; /* أبيض مطفي خفيف جداً */
             --icon-color: #94a3b8;
             --circle-bg: #ffffff;
         }
@@ -55,13 +55,10 @@
         .menu-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 
         .icon-circle {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             background-color: var(--circle-bg); 
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             margin-left: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
@@ -72,23 +69,19 @@
         .sub-desc { display: block; font-size: 0.8rem; color: #64748b; margin-top: 2px; }
         
         .arrow-container {
-            width: 38px;
-            height: 38px;
+            width: 38px; height: 38px;
             background-color: var(--circle-bg);
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             margin-right: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             border: 1px solid #f1f5f9;
         }
         .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
 
-        /* تنسيق معرض الصور السفلي */
+        /* المعرض السفلي */
         .slider-wrapper {
-            width: 92%;
-            max-width: 500px;
+            width: 92%; max-width: 500px;
             margin: 30px 0 60px 0;
             position: relative;
         }
@@ -99,7 +92,6 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             position: relative;
-            background-color: #000; /* لضمان عدم ظهور فراغات */
         }
 
         .slider-images {
@@ -108,66 +100,43 @@
         }
 
         .slider-images img {
-            width: 100%;
-            flex-shrink: 0;
-            display: block;
-            aspect-ratio: 16 / 9;
+            width: 100%; flex-shrink: 0;
+            display: block; aspect-ratio: 16 / 9;
             object-fit: cover;
         }
 
         .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 42px;
-            height: 42px;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 42px; height: 42px;
             background-color: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10;
-            transition: 0.2s;
+            border: none; border-radius: 50%;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10;
         }
 
-        .slider-btn:active { transform: translateY(-50%) scale(0.9); }
-        .slider-btn svg { width: 22px; height: 22px; fill: #334155; }
         .prev-btn { left: 15px; }
         .next-btn { right: 15px; }
 
-        /* نقاط المؤشر السفلي */
-        .dots-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-            gap: 8px;
-        }
-        .dot {
-            width: 8px;
-            height: 8px;
-            background-color: #cbd5e1;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-        .dot.active {
-            background-color: var(--primary-gold);
-            width: 20px;
-            border-radius: 10px;
-        }
+        .dots-container { display: flex; justify-content: center; margin-top: 15px; gap: 8px; }
+        .dot { width: 8px; height: 8px; background-color: #cbd5e1; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background-color: var(--primary-gold); width: 20px; border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h2 style="margin:0; font-weight: 400;">وزارة الصحة</h2>
-        <small style="color:var(--primary-gold); font-weight: bold; letter-spacing: 1px;">MINISTRY OF HEALTH</small>
+        <small style="color:var(--primary-gold); font-weight: bold;">MINISTRY OF HEALTH</small>
         <h1>موقع وزارة الصحة | KR</h1>
     </div>
 
     <div class="menu-container">
+        <a href="#" class="menu-item">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M16,11V13H8V11H16M16,15V17H8V15H16Z"/></svg></div>
+            <div class="menu-text-container"><span class="main-text">التقديم الإلكتروني</span><span class="sub-desc">انضم لكوادرنا الآن</span></div>
+            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+        </a>
+
         <a href="operations.html" class="menu-item">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,3A1,1 0 0,1 13,4V5H19V7H18V18A3,3 0 0,1 15,21H9A3,3 0 0,1 6,18V7H5V5H11V4A1,1 0 0,1 12,3M11,9H13V17H11V9"/></svg></div>
             <div class="menu-text-container"><span class="main-text">رسوم العمليات</span><span class="sub-desc">تكاليف الخدمات الصحية</span></div>
@@ -179,35 +148,40 @@
             <div class="menu-text-container"><span class="main-text">حجز المواعيد</span><span class="sub-desc">حدد موعد زيارتك</span></div>
             <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
         </a>
+
+        <a href="leaders.html" class="menu-item">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V8A2,2 0 0,1 4,6H8V4A2,2 0 0,1 10,2M14,6V4H10V6H14Z"/></svg></div>
+            <div class="menu-text-container"><span class="main-text">قيادة الوزارة</span><span class="sub-desc">الهيكل الإداري</span></div>
+            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+        </a>
+
+        <a href="goals.html" class="menu-item">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg></div>
+            <div class="menu-text-container"><span class="main-text">أهداف الوزارة</span><span class="sub-desc">رؤيتنا المستقبلية</span></div>
+            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg></div>
+            <div class="menu-text-container"><span class="main-text">الاقتراحات والشكاوى</span><span class="sub-desc">تواصل معنا مباشرة</span></div>
+            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
+        </a>
     </div>
 
     <div class="slider-wrapper">
         <div class="slider-container">
             <div class="slider-images" id="slider">
-                <img src="https://r2.erweima.ai/i/p/f233f2601708466e.png" alt="لقطة 1 من السيرفر">
-                <img src="https://r2.erweima.ai/i/p/3b14649474704e67.png" alt="لقطة 2 من السيرفر">
-                <img src="https://r2.erweima.ai/i/p/0861183307524022.png" alt="لقطة 3 من السيرفر">
-                <img src="https://r2.erweima.ai/i/p/4442220455504771.png" alt="لقطة 4 من السيرفر">
+                <img src="https://i.ibb.co/3ykS5v3/1.png" alt="صورة 1">
+                <img src="https://i.ibb.co/9V6XWzC/2.png" alt="صورة 2">
+                <img src="https://i.ibb.co/q7X0B0X/3.png" alt="صورة 3">
+                <img src="https://i.ibb.co/L5B0P8G/4.png" alt="صورة 4">
             </div>
-
-            <button class="slider-btn prev-btn" onclick="moveSlider(-1)">
-                <svg viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg>
-            </button>
-            <button class="slider-btn next-btn" onclick="moveSlider(1)">
-                <svg viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-            </button>
+            <button class="slider-btn prev-btn" onclick="moveSlider(-1)"><svg viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg></button>
+            <button class="slider-btn next-btn" onclick="moveSlider(1)"><svg viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg></button>
         </div>
-        
         <div class="dots-container" id="dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
         </div>
-    </div>
-
-    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem;">
-        © 2026 وزارة الصحة | KR
     </div>
 
     <script>
@@ -218,21 +192,17 @@
 
         function moveSlider(direction) {
             currentIndex += direction;
-            
             if (currentIndex < 0) currentIndex = totalImages - 1;
             if (currentIndex >= totalImages) currentIndex = 0;
-            
-            // تحريك الصور
             slider.style.transform = `translateX(${currentIndex * 100}%)`;
-            
-            // تحديث النقاط
             dots.forEach(dot => dot.classList.remove('active'));
             dots[currentIndex].classList.add('active');
         }
-
-        // تحريك تلقائي كل 5 ثواني
         setInterval(() => moveSlider(1), 5000);
     </script>
 
+    <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem;">
+        © 2026 وزارة الصحة | KR
+    </div>
 </body>
 </html>
