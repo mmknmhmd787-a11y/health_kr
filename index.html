@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة وزارة الصحة - KR MOH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { 
             margin: 0; 
@@ -29,7 +30,6 @@
             font-size: 1.1rem;
             opacity: 0.5;
             margin-top: 5px;
-            letter-spacing: 1px;
         }
 
         .container {
@@ -38,7 +38,7 @@
             padding: 0 20px 50px;
         }
 
-        /* تنسيق البطاقة لتطابق الصورة */
+        /* تنسيق البطاقة البيضاء */
         .card {
             background-color: #fff;
             border-radius: 25px; 
@@ -63,20 +63,21 @@
             color: #a0888f;
         }
 
-        /* الأيقونات الدائرية الملونة */
-        .icon-wrapper {
+        /* الأيقونة الخطية داخل الدائرة */
+        .icon-circle {
             width: 60px;
             height: 60px;
-            background-color: #fdf2f5; /* لون وردي خفيف جداً خلف الأيقونة */
-            border-radius: 20px;
+            background-color: #fdf2f5;
+            border-radius: 50%; /* دائرية تماماً مثل الصورة */
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            font-size: 28px;
+            color: #d81b60; /* لون الأيقونة */
+            font-size: 24px;
         }
 
-        /* تنسيق السلايدر في الأسفل */
+        /* السلايدر السفلي */
         .slider-container {
             position: relative;
             max-width: 100%;
@@ -109,7 +110,6 @@
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 18px;
             z-index: 10;
         }
 
@@ -127,25 +127,25 @@
     <div class="container">
         
         <div class="card">
-            <div class="icon-wrapper" style="color: #e91e63;">📝</div>
+            <div class="icon-circle"><i class="fa-regular fa-file-lines"></i></div>
             <div class="card-title">التقديم الإلكتروني</div>
             <div class="card-desc">ابدأ طلبك الآن عبر البوابة</div>
         </div>
 
         <div class="card">
-            <div class="icon-wrapper" style="color: #673ab7;">📅</div>
+            <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
             <div class="card-title">حجز المواعيد</div>
             <div class="card-desc">احجز موعدك بكل سهولة</div>
         </div>
 
         <div class="card">
-            <div class="icon-wrapper" style="color: #009688;">👤</div>
+            <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
             <div class="card-title">من نحن</div>
             <div class="card-desc">تعرّف على الوزارة ورؤيتها</div>
         </div>
 
         <div class="card">
-            <div class="icon-wrapper" style="color: #ff9800;">🏥</div>
+            <div class="icon-circle"><i class="fa-solid fa-stethoscope"></i></div>
             <div class="card-title">خدماتنا</div>
             <div class="card-desc">تصفح جميع الخدمات الصحية</div>
         </div>
