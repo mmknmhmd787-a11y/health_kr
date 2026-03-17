@@ -23,70 +23,66 @@
 
         .container { max-width: 450px; margin: 0 auto; padding: 0 20px 50px; }
 
-        /* البطاقات الأساسية */
         .card {
             background-color: #fff; border-radius: 25px; padding: 25px;
             margin-bottom: 20px; text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03); cursor: pointer; transition: 0.3s;
         }
-        .card:active { transform: scale(0.95); }
-        .icon-circle {
-            width: 60px; height: 60px; background-color: var(--soft-pink);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 15px; color: var(--primary-pink); font-size: 24px;
-        }
 
-        /* --- النافذة المنبثقة المدمجة --- */
+        /* --- النافذة المنبثقة (Modal) بحجم أكبر --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(61, 31, 40, 0.4); backdrop-filter: blur(8px);
-            display: none; justify-content: center; align-items: center; z-index: 1000;
+            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: flex-end; z-index: 1000;
         }
         .modal-overlay.active { display: flex; }
 
         .modal-content {
-            background: #fff; width: 85%; max-width: 380px;
-            border-radius: 35px; padding: 25px; position: relative;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15); overflow: hidden;
+            background: #fff; width: 92%; max-width: 420px;
+            height: 80vh; /* كبرت الطول ليغطي أغلب الشاشة */
+            border-radius: 40px 40px 0 0; /* زوايا دائرية من الأعلى فقط */
+            padding: 30px 20px; position: relative;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+            transform: translateY(100%); transition: transform 0.4s ease-out;
+            overflow-y: auto;
         }
-
-        /* حاويات القوائم داخل المودال */
-        .menu-view { display: block; }
-        .leadership-view { display: none; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
 
         .modal-header { 
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 20px; border-bottom: 2px solid var(--soft-pink); padding-bottom: 10px;
+            margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee;
         }
-        .modal-header h3 { margin: 0; color: var(--primary-pink); }
+        .modal-header h3 { margin: 0; font-size: 1.5rem; color: var(--text-dark); }
 
-        .close-btn, .back-menu-btn {
-            font-size: 18px; cursor: pointer; color: #a0888f;
-            background: #f5f5f5; width: 35px; height: 35px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        .close-btn {
+            background: var(--soft-pink); color: var(--primary-pink);
+            width: 35px; height: 35px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
 
+        /* تنسيق العناصر داخل القائمة */
         .modal-item, .leader-item {
-            padding: 12px 15px; border-radius: 15px; background: #fafafa;
-            display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
-            cursor: pointer; transition: 0.2s;
+            padding: 18px; border-radius: 20px; background: #fafafa;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 12px;
+            cursor: pointer; transition: 0.2s; border: 1px solid transparent;
         }
-        .modal-item:hover, .leader-item:hover { background: var(--soft-pink); transform: translateX(-5px); }
-        .modal-item i, .leader-item i { color: var(--primary-pink); width: 20px; text-align: center; }
+        .modal-item:hover { border-color: var(--primary-pink); background: var(--soft-pink); }
+        .modal-item i, .leader-item i { color: var(--primary-pink); font-size: 20px; }
+        .modal-item span { font-weight: 600; font-size: 1.1rem; }
 
-        .leader-item { cursor: default; } /* القادة لا يحتاجون نقر حالياً */
-        .leader-info h4 { margin: 0; font-size: 1rem; }
-        .leader-info p { margin: 2px 0 0; font-size: 0.8rem; color: #a0888f; }
+        /* عرض القيادة */
+        .leadership-view { display: none; }
+        .leader-info h4 { margin: 0; font-size: 1.1rem; }
+        .leader-info p { margin: 2px 0 0; font-size: 0.9rem; color: #a0888f; }
 
-        /* السلايدر السفلي */
+        /* السلايدر */
         .slider-container {
-            position: relative; max-width: 100%; margin-top: 25px;
-            overflow: hidden; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative; overflow: hidden; border-radius: 20px;
+            margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slides img { width: 100%; flex: 0 0 100%; object-fit: cover; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .btn-prev { right: 10px; } .btn-next { left: 10px; }
+        .slides { display: flex; transition: transform 0.5s ease; width: 100%; }
+        .slides img { width: 100%; flex-shrink: 0; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
     </style>
 </head>
 <body>
@@ -97,35 +93,30 @@
     </div>
 
     <div class="container">
-        <div class="card"><div class="icon-circle"><i class="fa-regular fa-file-lines"></i></div><h3>التقديم الإلكتروني</h3></div>
-        <div class="card"><div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div><h3>حجز المواعيد</h3></div>
-        
         <div class="card" onclick="openModal()">
-            <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
-            <h3>من نحن</h3>
+            <div style="color: var(--primary-pink); font-size: 30px; margin-bottom: 10px;"><i class="fa-regular fa-user"></i></div>
+            <h3 style="margin:0">من نحن</h3>
         </div>
-
-        <div class="card"><div class="icon-circle"><i class="fa-solid fa-stethoscope"></i></div><h3>خدماتنا</h3></div>
 
         <div class="slider-container">
             <div class="slides" id="imgSlider">
-                <img src="https://i.ibb.co/fV6Qw4Bc/image-12.png" alt="1">
-                <img src="https://i.ibb.co/kgsxZyYr/image-9.png" alt="2">
-                <img src="https://i.ibb.co/M5h2cDmj/image-14.png" alt="3">
+                <img src="https://i.ibb.co/fV6Qw4Bc/image-12.png">
+                <img src="https://i.ibb.co/kgsxZyYr/image-9.png">
             </div>
-            <button class="nav-btn btn-prev" onclick="move(1)">❯</button>
-            <button class="nav-btn btn-next" onclick="move(-1)">❮</button>
+            <button class="nav-btn" style="right:10px" onclick="move(1)">❯</button>
+            <button class="nav-btn" style="left:10px" onclick="move(-1)">❮</button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="aboutModal">
+    <div class="modal-overlay" id="aboutModal" onclick="closeModalOutside(event)">
         <div class="modal-content">
             
-            <div id="mainMenuView" class="menu-view">
+            <div id="mainMenuView">
                 <div class="modal-header">
+                    <div class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
                     <h3>عن الوزارة</h3>
-                    <span class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></span>
-                </div>
+                    <div style="width:35px"></div> </div>
+                
                 <div class="modal-item" onclick="showLeadership()">
                     <i class="fa-solid fa-crown"></i>
                     <span>قيادة الوزارة</span>
@@ -137,40 +128,37 @@
 
             <div id="leadershipView" class="leadership-view">
                 <div class="modal-header">
-                    <span class="back-menu-btn" onclick="showMainMenu()"><i class="fa-solid fa-arrow-right"></i></span>
+                    <div class="close-btn" onclick="showMainMenu()"><i class="fa-solid fa-arrow-right"></i></div>
                     <h3>القيادة العليا</h3>
-                    <span class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></span>
+                    <div style="width:35px"></div>
                 </div>
-                <div class="leader-item">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <div class="leader-info"><h4>امين الجوبري</h4><p>وزير الصحة</p></div>
-                </div>
-                <div class="leader-item">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <div class="leader-info"><h4>محمود</h4><p>نائب وزير الصحة</p></div>
-                </div>
-                <div class="leader-item">
-                    <i class="fa-solid fa-user-gear"></i>
-                    <div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div>
-                </div>
-                <div class="leader-item">
-                    <i class="fa-solid fa-truck-medical"></i>
-                    <div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div>
-                </div>
+                
+                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>امين الجوبري</h4><p>وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>محمود</h4><p>نائب وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
             </div>
 
         </div>
     </div>
 
     <script>
-        function openModal() { document.getElementById('aboutModal').classList.add('active'); showMainMenu(); }
-        function closeModal() { document.getElementById('aboutModal').classList.remove('active'); }
-        
+        function openModal() { 
+            const m = document.getElementById('aboutModal');
+            m.style.display = 'flex';
+            setTimeout(() => m.classList.add('active'), 10);
+        }
+        function closeModal() { 
+            const m = document.getElementById('aboutModal');
+            m.classList.remove('active');
+            setTimeout(() => m.style.display = 'none', 400);
+        }
+        function closeModalOutside(e) { if(e.target.id === 'aboutModal') closeModal(); }
+
         function showLeadership() {
             document.getElementById('mainMenuView').style.display = 'none';
             document.getElementById('leadershipView').style.display = 'block';
         }
-
         function showMainMenu() {
             document.getElementById('leadershipView').style.display = 'none';
             document.getElementById('mainMenuView').style.display = 'block';
@@ -179,7 +167,7 @@
         let idx = 0;
         function move(n) {
             const s = document.getElementById('imgSlider');
-            idx = (idx + n + 3) % 3;
+            idx = (idx + n + 2) % 2;
             s.style.transform = `translateX(${idx * 100}%)`;
         }
     </script>
