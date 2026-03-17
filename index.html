@@ -9,7 +9,7 @@
             --primary-gold: #c5a059;
             --header-bg: #000000;
             --body-bg: #ffffff;
-            --card-bg: #fcfcfc; /* أبيض مطفي خفيف جداً */
+            --card-bg: #fcfcfc;
             --icon-color: #94a3b8;
             --circle-bg: #ffffff;
         }
@@ -27,7 +27,6 @@
             padding: 50px 0; 
             text-align: center; 
             color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .header h1 { color: var(--primary-gold); margin: 10px 0; font-size: 1.8rem; }
@@ -48,11 +47,8 @@
             text-decoration: none;
             color: #334155;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
-            transition: 0.3s ease;
             border: 1px solid #f3f4f6;
         }
-
-        .menu-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 
         .icon-circle {
             width: 50px; height: 50px;
@@ -60,13 +56,12 @@
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             margin-left: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .icon-circle svg { width: 24px; height: 24px; fill: var(--icon-color); }
 
         .menu-text-container { flex-grow: 1; text-align: right; }
         .main-text { display: block; font-size: 1.1rem; font-weight: bold; color: #1e293b; }
-        .sub-desc { display: block; font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+        .sub-desc { display: block; font-size: 0.8rem; color: #64748b; }
         
         .arrow-container {
             width: 38px; height: 38px;
@@ -74,12 +69,10 @@
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             margin-right: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             border: 1px solid #f1f5f9;
         }
         .arrow-container svg { width: 18px; height: 18px; fill: var(--icon-color); }
 
-        /* المعرض السفلي */
         .slider-wrapper {
             width: 92%; max-width: 500px;
             margin: 30px 0 60px 0;
@@ -96,37 +89,34 @@
 
         .slider-images {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s ease-in-out;
         }
 
         .slider-images img {
             width: 100%; flex-shrink: 0;
-            display: block; aspect-ratio: 16 / 9;
+            aspect-ratio: 16 / 9;
             object-fit: cover;
         }
 
         .slider-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 42px; height: 42px;
-            background-color: rgba(255, 255, 255, 0.9);
+            width: 40px; height: 40px;
+            background-color: white;
             border: none; border-radius: 50%;
             cursor: pointer; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10;
         }
 
         .prev-btn { left: 15px; }
         .next-btn { right: 15px; }
-
-        .dots-container { display: flex; justify-content: center; margin-top: 15px; gap: 8px; }
-        .dot { width: 8px; height: 8px; background-color: #cbd5e1; border-radius: 50%; transition: 0.3s; }
-        .dot.active { background-color: var(--primary-gold); width: 20px; border-radius: 10px; }
+        .slider-btn svg { width: 20px; height: 20px; fill: #333; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2 style="margin:0; font-weight: 400;">وزارة الصحة</h2>
-        <small style="color:var(--primary-gold); font-weight: bold;">MINISTRY OF HEALTH</small>
+        <h2 style="margin:0;">وزارة الصحة</h2>
+        <small style="color:var(--primary-gold);">MINISTRY OF HEALTH</small>
         <h1>موقع وزارة الصحة | KR</h1>
     </div>
 
@@ -137,27 +127,15 @@
             <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
         </a>
 
-        <a href="operations.html" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,3A1,1 0 0,1 13,4V5H19V7H18V18A3,3 0 0,1 15,21H9A3,3 0 0,1 6,18V7H5V5H11V4A1,1 0 0,1 12,3M11,9H13V17H11V9"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">رسوم العمليات</span><span class="sub-desc">تكاليف الخدمات الصحية</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
-        </a>
-
         <a href="#" class="menu-item">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.9 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg></div>
             <div class="menu-text-container"><span class="main-text">حجز المواعيد</span><span class="sub-desc">حدد موعد زيارتك</span></div>
             <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
         </a>
 
-        <a href="leaders.html" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V8A2,2 0 0,1 4,6H8V4A2,2 0 0,1 10,2M14,6V4H10V6H14Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">قيادة الوزارة</span><span class="sub-desc">الهيكل الإداري</span></div>
-            <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
-        </a>
-
-        <a href="goals.html" class="menu-item">
-            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg></div>
-            <div class="menu-text-container"><span class="main-text">أهداف الوزارة</span><span class="sub-desc">رؤيتنا المستقبلية</span></div>
+        <a href="#" class="menu-item">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.97 19.05,5.05L16.56,6.05C16.04,5.65 15.44,5.32 14.87,5.07L14.44,2.42C14.39,2.19 14.2,2 14,2H10C9.8,2 9.61,2.19 9.56,2.42L9.13,5.07C8.56,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.97 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.95C7.96,18.34 8.56,18.68 9.13,18.93L9.56,21.58C9.61,21.81 9.8,22 10,22H14C14.2,22 14.39,21.81 14.44,21.58L14.87,18.93C15.44,18.67 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg></div>
+            <div class="menu-text-container"><span class="main-text">الخدمات والأنظمة</span><span class="sub-desc">اللوائح والدليل الإجرائي</span></div>
             <div class="arrow-container"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg></div>
         </a>
 
@@ -171,34 +149,27 @@
     <div class="slider-wrapper">
         <div class="slider-container">
             <div class="slider-images" id="slider">
-                <img src="https://i.ibb.co/3ykS5v3/1.png" alt="صورة 1">
-                <img src="https://i.ibb.co/9V6XWzC/2.png" alt="صورة 2">
-                <img src="https://i.ibb.co/q7X0B0X/3.png" alt="صورة 3">
-                <img src="https://i.ibb.co/L5B0P8G/4.png" alt="صورة 4">
+                <img src="1.png" alt="صورة 1">
+                <img src="2.png" alt="صورة 2">
+                <img src="3.png" alt="صورة 3">
+                <img src="4.png" alt="صورة 4">
             </div>
             <button class="slider-btn prev-btn" onclick="moveSlider(-1)"><svg viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg></button>
             <button class="slider-btn next-btn" onclick="moveSlider(1)"><svg viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg></button>
-        </div>
-        <div class="dots-container" id="dots">
-            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
         </div>
     </div>
 
     <script>
         let currentIndex = 0;
         const slider = document.getElementById('slider');
-        const dots = document.querySelectorAll('.dot');
-        const totalImages = dots.length;
+        const totalImages = 4;
 
         function moveSlider(direction) {
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = totalImages - 1;
             if (currentIndex >= totalImages) currentIndex = 0;
             slider.style.transform = `translateX(${currentIndex * 100}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
         }
-        setInterval(() => moveSlider(1), 5000);
     </script>
 
     <div style="padding: 20px; color:#cbd5e1; font-size:0.85rem;">
