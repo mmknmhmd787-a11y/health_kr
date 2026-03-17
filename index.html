@@ -14,31 +14,12 @@
             color: #4a2c34;
         }
 
-        .header-section {
-            text-align: center;
-            padding: 50px 20px 30px;
-        }
+        .header-section { text-align: center; padding: 50px 20px 30px; }
+        .header-section h1 { font-size: 2.2rem; margin: 0; color: #3d1f28; font-weight: bold; }
+        .header-section p { font-size: 1.1rem; opacity: 0.5; margin-top: 5px; }
 
-        .header-section h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            color: #3d1f28;
-            font-weight: bold;
-        }
+        .container { max-width: 450px; margin: 0 auto; padding: 0 20px 50px; }
 
-        .header-section p {
-            font-size: 1.1rem;
-            opacity: 0.5;
-            margin-top: 5px;
-        }
-
-        .container {
-            max-width: 450px;
-            margin: 0 auto;
-            padding: 0 20px 50px;
-        }
-
-        /* تنسيق البطاقة البيضاء */
         .card {
             background-color: #fff;
             border-radius: 25px; 
@@ -46,75 +27,58 @@
             margin-bottom: 20px;
             text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-            text-decoration: none;
-            display: block;
-            border: 1px solid rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.3s;
         }
+        .card:active { transform: scale(0.98); }
 
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #3d1f28;
-            margin-bottom: 5px;
-        }
+        .card-title { font-size: 1.3rem; font-weight: bold; color: #3d1f28; margin-bottom: 5px; }
+        .card-desc { font-size: 0.9rem; color: #a0888f; }
 
-        .card-desc {
-            font-size: 0.9rem;
-            color: #a0888f;
-        }
-
-        /* الأيقونة الخطية داخل الدائرة */
         .icon-circle {
-            width: 60px;
-            height: 60px;
-            background-color: #fdf2f5;
-            border-radius: 50%; /* دائرية تماماً مثل الصورة */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            color: #d81b60; /* لون الأيقونة */
-            font-size: 24px;
+            width: 60px; height: 60px; background-color: #fdf2f5;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; margin: 0 auto 15px;
+            color: #d81b60; font-size: 24px;
         }
+
+        /* --- تنسيق النافذة المنبثقة (Modal) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* مخفية في البداية */
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff; width: 85%; max-width: 400px;
+            border-radius: 30px; padding: 30px;
+            position: relative; text-align: right;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .close-btn {
+            position: absolute; top: 20px; left: 20px; /* الـ X في الزاوية */
+            font-size: 24px; cursor: pointer; color: #a0888f;
+        }
+
+        .modal-item {
+            padding: 15px 10px; border-bottom: 1px solid #f5f5f5;
+            color: #3d1f28; font-weight: 500; cursor: pointer;
+        }
+        .modal-item:last-child { border-bottom: none; }
+        .modal-item:hover { color: #d81b60; }
 
         /* السلايدر السفلي */
         .slider-container {
-            position: relative;
-            max-width: 100%;
-            margin-top: 20px;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative; max-width: 100%; margin-top: 20px;
+            overflow: hidden; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: 100%;
-        }
-
-        .slides img {
-            width: 100%;
-            flex: 0 0 100%;
-            display: block;
-            object-fit: cover;
-        }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.85);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .btn-prev { right: 10px; }
-        .btn-next { left: 10px; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slides img { width: 100%; flex: 0 0 100%; display: block; object-fit: cover; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; }
+        .btn-prev { right: 10px; } .btn-next { left: 10px; }
     </style>
 </head>
 <body>
@@ -125,7 +89,6 @@
     </div>
 
     <div class="container">
-        
         <div class="card">
             <div class="icon-circle"><i class="fa-regular fa-file-lines"></i></div>
             <div class="card-title">التقديم الإلكتروني</div>
@@ -138,7 +101,7 @@
             <div class="card-desc">احجز موعدك بكل سهولة</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal()">
             <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
             <div class="card-title">من نحن</div>
             <div class="card-desc">تعرّف على الوزارة ورؤيتها</div>
@@ -161,7 +124,29 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="margin-top: 0; color: #d81b60;">عن الوزارة</h3>
+            <div class="modal-item">قيادة الوزارة</div>
+            <div class="modal-item">الهيكل التنظيمي</div>
+            <div class="modal-item">تاريخ الوزارة</div>
+            <div class="modal-item">أهداف الوزارة</div>
+        </div>
+    </div>
+
     <script>
+        // دوال القائمة المنبثقة
+        function openModal() { document.getElementById('aboutModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('aboutModal').style.display = 'none'; }
+
+        // إغلاق عند الضغط خارج المربع
+        window.onclick = function(event) {
+            let modal = document.getElementById('aboutModal');
+            if (event.target == modal) { closeModal(); }
+        }
+
+        // دوال السلايدر
         let idx = 0;
         function move(n) {
             const s = document.getElementById('imgSlider');
