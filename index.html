@@ -41,7 +41,7 @@
         .card h3 { margin: 0; font-size: 1.3rem; }
         .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
 
-        /* --- النوافذ المنبثقة (Modals) --- */
+        /* --- Modals --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
@@ -84,7 +84,7 @@
         .leader-info p { margin: 2px 0 0; font-size: 0.9rem; color: #a0888f; }
         .price-tag { margin-right: auto; font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 5px 12px; border-radius: 12px; font-size: 0.9rem; }
 
-        /* السلايدر السفلي */
+        /* Slider */
         .slider-container {
             position: relative; overflow: hidden; border-radius: 20px;
             margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -109,7 +109,7 @@
             <p>ابدأ طلبك الآن عبر البوابة</p>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
             <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
             <h3>حجز المواعيد</h3>
             <p>احجز موعدك بكل سهولة</p>
@@ -303,7 +303,6 @@
         let idx = 0;
         function move(n) {
             const s = document.getElementById('imgSlider');
-            // المجموع 3 صور الآن
             idx = (idx + n + 3) % 3;
             s.style.transform = `translateX(${idx * 100}%)`;
         }
