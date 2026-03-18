@@ -1,86 +1,47 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { 
-            background-color: #f8f9fa; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-        }
-        .container { width: 100%; max-width: 500px; }
-        .header-title { 
-            color: #c5a059; 
-            border-right: 4px solid #c5a059; 
-            padding-right: 15px; 
-            align-self: flex-start;
-            margin-bottom: 25px;
-            font-size: 1.5em;
-        }
-        .card { 
-            background: white; 
-            border-radius: 15px; 
-            padding: 20px; 
-            margin-bottom: 15px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
-        .card:hover { transform: scale(1.02); }
-        .name { 
-            font-weight: bold; 
-            font-size: 1.3em; 
-            color: #1a1a1a; 
-            margin-bottom: 5px;
-        }
-        .title { 
-            color: #888; 
-            font-size: 0.95em; 
-        }
-        .back-btn {
-            margin-top: 20px;
-            text-decoration: none;
-            color: #c5a059;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2 class="header-title">القيادة العليا</h2>
-        
-        <div class="card">
-            <div class="name">امين الجوبري</div>
-            <div class="title">وزير الصحة</div>
-        </div>
-
-        <div class="card">
-            <div class="name">لا يوجد</div>
-            <div class="title">نائب وزير الصحة</div>
-        </div>
-
-        <div class="card">
-            <div class="name">عمار الهذلي</div>
-            <div class="title">مستشار وزير الصحة</div>
-        </div>
-
-        <div class="card">
-            <div class="name">هورس العربي</div>
-            <div class="title">مسؤول المسعفين</div>
-        </div>
-
-        <div class="card">
-            <div class="name">كريم السيد</div>
-            <div class="title">مدير المستشفى</div>
-        </div>
-
-        <center><a href="index.html" class="back-btn">← العودة للرئيسية</a></center>
-    </div>
-</body>
-</html>
+            <div id="leadershipView" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>القيادة العليا</h3>
+                    <div style="width:35px"></div>
+                </div>
+                
+                <div class="leader-item">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div class="leader-info">
+                        <h4>أمين الجوبري</h4>
+                        <p>وزير الصحة</p>
+                    </div>
+                </div>
+                
+                <div class="leader-item">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <div class="leader-info">
+                        <h4>لا يوجد حالياً</h4>
+                        <p>نائب وزير الصحة</p>
+                    </div>
+                </div>
+                
+                <div class="leader-item">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <div class="leader-info">
+                        <h4>عمار الهذلي</h4>
+                        <p>مستشار وزير الصحة</p>
+                    </div>
+                </div>
+                
+                <div class="leader-item">
+                    <i class="fa-solid fa-truck-medical"></i>
+                    <div class="leader-info">
+                        <h4>هورس العربي</h4>
+                        <p>مسؤول المسعفين</p>
+                    </div>
+                </div>
+                
+                <div class="leader-item">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <div class="leader-info">
+                        <h4>كريم السيد</h4>
+                        <p>مدير المستشفى</p>
+                    </div>
+                </div>
+            </div>
