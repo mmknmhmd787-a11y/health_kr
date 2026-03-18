@@ -41,7 +41,7 @@
         .card h3 { margin: 0; font-size: 1.3rem; }
         .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
 
-        /* --- النوافذ المنبثقة (Modals) --- */
+        /* --- Modals --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
@@ -102,10 +102,16 @@
     </div>
 
     <div class="container">
-        <div class="card" onclick="openModal('applyStatusModal')">
+        <div class="card">
             <div class="icon-circle"><i class="fa-regular fa-file-lines"></i></div>
+            <h3>التقديم الإلكتروني</h3>
+            <p>ابدأ طلبك الآن عبر البوابة</p>
+        </div>
+
+        <div class="card" onclick="openModal('applyStatusModal')">
+            <div class="icon-circle"><i class="fa-solid fa-clipboard-list"></i></div>
             <h3>حالة التقديمات</h3>
-            <p>تحقق من توفر التقديم الإلكتروني</p>
+            <p>تحقق من توفر التقديمات حالياً</p>
         </div>
 
         <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
@@ -163,138 +169,6 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="aboutModal" onclick="closeModalOutside(event, 'aboutModal')">
-        <div class="modal-content">
-            <div id="aboutMainView">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="closeModal('aboutModal')"><i class="fa-solid fa-xmark"></i></div>
-                    <h3>عن الوزارة</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'leadershipView')">
-                    <i class="fa-solid fa-crown"></i>
-                    <span>قيادة الوزارة</span>
-                </div>
-                <div class="modal-item"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
-                <div class="modal-item"><i class="fa-solid fa-landmark"></i><span>تاريخ الوزارة</span></div>
-            </div>
-
-            <div id="leadershipView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>القيادة العليا</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>أمين الجوبري</h4><p>وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>لا يوجد حالياً</h4><p>نائب وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-hospital-user"></i><div class="leader-info"><h4>كريم السيد</h4><p>مدير المستشفى</p></div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="servicesModal" onclick="closeModalOutside(event, 'servicesModal')">
-        <div class="modal-content">
-            <div id="servicesMainView">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="closeModal('servicesModal')"><i class="fa-solid fa-xmark"></i></div>
-                    <h3>خدماتنا</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'operationsCatsView')">
-                    <i class="fa-solid fa-money-bill-wave"></i>
-                    <span>أسعار العمليات</span>
-                </div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')">
-                    <i class="fa-solid fa-gavel"></i>
-                    <span>قوانين الحجز</span>
-                </div>
-            </div>
-
-            <div id="operationsCatsView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>أقسام العمليات</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة العامة والعيون</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat2View')"><span>العظام والمفاصل</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat3View')"><span>القلب</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat4View')"><span>الدماغ وبقية الجسم</span></div>
-            </div>
-
-            <div id="cat1View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat1View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>الجراحة والعيون</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>استئصال المرارة</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>الأورام السطحية</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>عمليات الجهاز الهضمي</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>عمليات التجميل</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>تصحيح النظر</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>زراعة القرنية</span><div class="price-tag">5k</div></div>
-            </div>
-
-            <div id="cat2View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat2View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>العظام والمفاصل</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>إصلاح الكسور</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>تغيير المفاصل</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>إصلاح الأربطة</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>تطويل العظام</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>الرباط الصليبي</span><div class="price-tag">5k</div></div>
-            </div>
-
-            <div id="cat3View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat3View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>القلب</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>القسطرة</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>الشرايين ومشاكلها</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>تغيير الصمامات</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>القلب المفتوح</span><div class="price-tag">8k</div></div>
-            </div>
-
-            <div id="cat4View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat4View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>الدماغ وبقية الجسم</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>أورام الدماغ</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>نزيف داخلي / بالدماغ</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>حصى الكلى</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>زراعة كلى</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>الطلقات النارية</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>أعراض الجسم الأخرى</span><div class="price-tag">5k</div></div>
-            </div>
-
-            <div id="rulesView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>قوانين الحجز العامة</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item"><i class="fa-solid fa-rotate-left"></i><span>1- يمنع تكرار الحجز.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-at"></i><span>2- يمنع المنشن منعاً باتاً.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-comment-slash"></i><span>3- يمنع التحدث في شات الحجز منعاً باتاً.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-file-circle-exclamation"></i><span>4- عدم التزامك للنموذج يعرضك للرفض.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-id-card"></i><span>5- عدم كتابة بياناتك الكاملة يعرضك للرفض.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-user-slash"></i><span>6- يمنع إزعاج المسعفين أو من يخصهم الأمر.</span></div>
-                <div class="modal-item"><i class="fa-solid fa-user-lock"></i><span>7- يمنع التقديم للرتب التالية: المطلوبين لدى العدالة - مسؤولين البلاك ماركت - رئيس العصابة ونائبه.</span></div>
-                <p style="text-align: center; color: var(--primary-pink); font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">- قابل للتعديل في أي وقت -</p>
-            </div>
-        </div>
-    </div>
-
     <script>
         function openModal(id) { 
             const m = document.getElementById(id);
@@ -319,8 +193,8 @@
         }
 
         function resetModals() {
-            document.getElementById('aboutMainView').style.display = 'block';
-            document.getElementById('servicesMainView').style.display = 'block';
+            const views = ['aboutMainView', 'servicesMainView'];
+            views.forEach(v => { if(document.getElementById(v)) document.getElementById(v).style.display = 'block'; });
             const subs = document.querySelectorAll('.sub-view');
             subs.forEach(s => s.style.display = 'none');
         }
