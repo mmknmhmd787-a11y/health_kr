@@ -129,9 +129,9 @@
 
         <div class="slider-container">
             <div class="slides" id="imgSlider">
-                <img src="https://i.ibb.co/fV6Qw4Bc/image-12.png" alt="1">
-                <img src="https://i.ibb.co/kgsxZyYr/image-9.png" alt="2">
-                <img src="https://i.ibb.co/M5h2cDmj/image-14.png" alt="3">
+                <img src="https://i.ibb.co/0ytYBzNd/image-5.png" alt="1">
+                <img src="https://i.ibb.co/2YhW65mk/IMG-3065.png" alt="2">
+                <img src="https://i.ibb.co/pBP81WkB/1647462106957.png" alt="3">
             </div>
             <button class="nav-btn btn-prev" onclick="move(1)">❯</button>
             <button class="nav-btn btn-next" onclick="move(-1)">❮</button>
@@ -160,8 +160,8 @@
                     <h3>القيادة العليا</h3>
                     <div style="width:35px"></div>
                 </div>
-                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>امين الجوبري</h4><p>وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>محمود</h4><p>نائب وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>أمين الجوبري</h4><p>وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>لا يوجد حالياً</h4><p>نائب وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-hospital-user"></i><div class="leader-info"><h4>كريم السيد</h4><p>مدير المستشفى</p></div></div>
@@ -265,7 +265,7 @@
                 <div class="modal-item"><i class="fa-solid fa-id-card"></i><span>5- عدم كتابة بياناتك الكاملة يعرضك للرفض.</span></div>
                 <div class="modal-item"><i class="fa-solid fa-user-slash"></i><span>6- يمنع إزعاج المسعفين أو من يخصهم الأمر.</span></div>
                 <div class="modal-item"><i class="fa-solid fa-user-lock"></i><span>7- يمنع التقديم للرتب التالية: المطلوبين لدى العدالة - مسؤولين البلاك ماركت - رئيس العصابة ونائبه.</span></div>
-                <p style="text-align: center; color: var(--primary-pink); font-size: 0.8rem; margin-top: 15px;">- قابل للتعديل في أي وقت -</p>
+                <p style="text-align: center; color: var(--primary-pink); font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">- قابل للتعديل في أي وقت -</p>
             </div>
         </div>
     </div>
@@ -282,7 +282,7 @@
             m.classList.remove('active');
             setTimeout(() => {
                 m.style.display = 'none';
-                resetModals(); // تصفير كل القوائم للوضع الرئيسي
+                resetModals();
             }, 400);
         }
 
@@ -294,9 +294,7 @@
         }
 
         function resetModals() {
-            // إظهار القوائم الرئيسية وإخفاء الفرعية في كل المودالات
             document.getElementById('aboutMainView').style.display = 'block';
-            document.getElementById('leadershipView').style.display = 'none';
             document.getElementById('servicesMainView').style.display = 'block';
             const subs = document.querySelectorAll('.sub-view');
             subs.forEach(s => s.style.display = 'none');
@@ -305,6 +303,7 @@
         let idx = 0;
         function move(n) {
             const s = document.getElementById('imgSlider');
+            // المجموع 3 صور الآن
             idx = (idx + n + 3) % 3;
             s.style.transform = `translateX(${idx * 100}%)`;
         }
