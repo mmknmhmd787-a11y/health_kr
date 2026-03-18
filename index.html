@@ -41,7 +41,7 @@
         .card h3 { margin: 0; font-size: 1.3rem; }
         .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
 
-        /* --- Modals --- */
+        /* --- النوافذ المنبثقة (Modals) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
@@ -84,7 +84,6 @@
         .leader-info p { margin: 2px 0 0; font-size: 0.9rem; color: #a0888f; }
         .price-tag { margin-right: auto; font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 5px 12px; border-radius: 12px; font-size: 0.9rem; }
 
-        /* Slider */
         .slider-container {
             position: relative; overflow: hidden; border-radius: 20px;
             margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -103,28 +102,28 @@
     </div>
 
     <div class="container">
-        <div class="card">
+        <div class="card" onclick="openModal('applyStatusModal')">
             <div class="icon-circle"><i class="fa-regular fa-file-lines"></i></div>
-            <h3>التقديم الإلكتروني</h3>
-            <p>ابدأ طلبك الآن عبر البوابة</p>
+            <h3>حالة التقديمات</h3>
+            <p>تحقق من توفر التقديم الإلكتروني</p>
         </div>
 
         <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
             <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
             <h3>حجز المواعيد</h3>
-            <p>احجز موعدك بكل سهولة</p>
+            <p>احجز موعدك عبر الديسكورد</p>
         </div>
 
         <div class="card" onclick="openModal('aboutModal')">
             <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
             <h3>من نحن</h3>
-            <p>تعرّف على الوزارة ورؤيتها</p>
+            <p>تعرّف على الوزارة والقيادة</p>
         </div>
 
         <div class="card" onclick="openModal('servicesModal')">
             <div class="icon-circle"><i class="fa-solid fa-stethoscope"></i></div>
             <h3>خدماتنا</h3>
-            <p>تصفح جميع الخدمات الصحية</p>
+            <p>تصفح أسعار العمليات والقوانين</p>
         </div>
 
         <div class="slider-container">
@@ -135,6 +134,32 @@
             </div>
             <button class="nav-btn btn-prev" onclick="move(1)">❯</button>
             <button class="nav-btn btn-next" onclick="move(-1)">❮</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="applyStatusModal" onclick="closeModalOutside(event, 'applyStatusModal')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close-btn" onclick="closeModal('applyStatusModal')"><i class="fa-solid fa-xmark"></i></div>
+                <h3>حالة التقديمات</h3>
+                <div style="width:35px"></div>
+            </div>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span style="font-weight: bold;">تقديم وزارة الصحة</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+            </div>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                    <span style="font-weight: bold;">تقديم تطوع الهلال الاحمر</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+            </div>
         </div>
     </div>
 
