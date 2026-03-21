@@ -41,6 +41,7 @@
         .card h3 { margin: 0; font-size: 1.3rem; }
         .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
 
+        /* --- Modals --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
@@ -109,14 +110,14 @@
 
         <div class="card" onclick="openModal('applyStatusModal')">
             <div class="icon-circle"><i class="fa-solid fa-clipboard-list"></i></div>
-            <h3> التقديمات</h3>
-            <p>تحقق من توفر التقديمات حالياً</p>
+            <h3>التقديمات</h3>
+            <p>تحقق من حالة التقديمات حالياً</p>
         </div>
 
         <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
             <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
             <h3>حجز المواعيد</h3>
-            <p>احجز موعدك عبر برنامج الدولة ( Discord )</p>
+            <p>احجز موعدك عبر الديسكورد</p>
         </div>
 
         <div class="card" onclick="openModal('aboutModal')">
@@ -146,7 +147,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="close-btn" onclick="closeModal('applyStatusModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>حالة التقديمات</h3>
+                <h3>التقديمات</h3>
                 <div style="width:35px"></div>
             </div>
 
@@ -189,7 +190,10 @@
                     <span>قيادة الوزارة</span>
                 </div>
                 <div class="modal-item"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
-                <div class="modal-item"><i class="fa-solid fa-landmark"></i><span>تاريخ الوزارة</span></div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>تاريخ الوزارة</span>
+                </div>
             </div>
 
             <div id="leadershipView" class="sub-view">
@@ -201,8 +205,68 @@
                 <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>أمين الجوبري</h4><p>وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>لا يوجد حالياً</h4><p>نائب وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-hospital-user"></i><div class="leader-info"><h4>كريم السيد</h4><p>مدير المستشفى</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
+            </div>
+
+            <div id="historyView" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>تاريخ الوزارة</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div style="padding: 10px; line-height: 1.6;">
+                    <p style="font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 10px; border-radius: 15px; text-align: center;">
+                        تأسست الوزارة في اليوم 21/9/2021
+                    </p>
+                    <h4 style="margin: 20px 0 10px;"><i class="fa-solid fa-clock-rotate-left" style="margin-left: 8px;"></i>وزراؤها عبر الزمن:</h4>
+                    <div style="font-size: 0.9rem;">
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">1- ستارك (أول وزير)</span>
+                            <small>تعيين: 28/9/2021</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">2- cJ314</span>
+                            <small>تعيين: 14/10/2021</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">3- خالد العتيبي</span>
+                            <small>تعيين: 3/1/2022 | النائب: أحمد الحربي</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">4- أحمد الحربي</span>
+                            <small>تعيين: 26/11/2022 | النائب: احمد البلوي | المستشار: أمين الجوبري</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">5- احمد البلوي</span>
+                            <small>تعيين: 1/6/2023 | النائب السابق: ريان البلوي</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">6- ريان البلوي</span>
+                            <small>تعيين: 07/09/2023 | النائب السابق: أمين الجوبري</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">7- أمين الجوبري</span>
+                            <small>تعيين: 2023/8/17 | النائب: صالح الزهراني | المستشار: أبو عطالله</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">8- صالح الزهراني</span>
+                            <small>تعيين: 2025/1/10 | النائب: s3udi101 | المستشار: أبو عطالله</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">9- خالد الأسمري</span>
+                            <small>تعيين: 2026/9/5 | النائب: fd4o | المستشارين: kld111 & u_04</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">10- ابو سعود</span>
+                            <small>تعيين: 2026/2/5 | النائب: u_04 | المستشار: rv8w</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start; border: 2px solid var(--primary-pink);">
+                            <span style="font-weight: bold; color: var(--primary-pink);">11- أمين الجوبري (الوزير الحالي)</span>
+                            <small>تعيين: 2026/3/1</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
