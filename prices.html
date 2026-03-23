@@ -2,47 +2,103 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة أسعار العمليات - KR MOH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; background-color: #121212; color: white; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #1e1e1e; border-radius: 8px; overflow: hidden; }
-        th, td { border: 1px solid #333; padding: 12px; text-align: center; }
-        th { background-color: #c5a059; color: black; }
-        .section-title { background: #2c2c2c; color: #c5a059; font-weight: bold; }
+        :root {
+            --primary-pink: #d81b60;
+            --soft-pink: #fdf2f5;
+            --text-dark: #3d1f28;
+            --bg-gradient: linear-gradient(180deg, #f8c8d3 0%, #f9e1e7 100%);
+        }
+
+        body { 
+            margin: 0; font-family: 'Segoe UI', sans-serif; 
+            background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark);
+            padding: 20px;
+        }
+
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 1.8rem; color: var(--primary-pink); margin-bottom: 5px; }
+        .back-btn { 
+            display: inline-block; padding: 8px 15px; background: #fff; 
+            border-radius: 12px; text-decoration: none; color: var(--primary-pink);
+            font-weight: bold; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .category-section {
+            background: #fff; border-radius: 20px; padding: 20px;
+            margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        .category-title {
+            display: flex; align-items: center; gap: 10px;
+            border-bottom: 2px solid var(--soft-pink);
+            padding-bottom: 10px; margin-bottom: 15px;
+            color: var(--primary-pink); font-weight: bold;
+        }
+
+        .price-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px; background: #fafafa; border-radius: 15px;
+            margin-bottom: 8px; transition: 0.2s;
+        }
+        .price-item:hover { background: var(--soft-pink); }
+
+        .operation-name { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .op-number { color: #ccc; font-size: 0.8rem; width: 20px; }
+        
+        .price-tag {
+            background: var(--primary-pink); color: #fff;
+            padding: 4px 12px; border-radius: 10px; font-weight: bold; font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
-    <h2>رسم العمليات</h2>
-    <table>
-        <tr><th>الرقم</th><th>الأعراض / العملية</th><th>المبلغ</th></tr>
-        <tr class="section-title"><td colspan="3">القسم الأول: الجراحة العامة والعيون</td></tr>
-        <tr><td>1</td><td>استئصال المرارة</td><td>4k</td></tr>
-        <tr><td>2</td><td>الأورام السطحية</td><td>4k</td></tr>
-        <tr><td>3</td><td>عمليات الجهاز الهضمي</td><td>4k</td></tr>
-        <tr><td>4</td><td>عمليات التجميل</td><td>4k</td></tr>
-        <tr><td>5</td><td>تصحيح النظر</td><td>5k</td></tr>
-        <tr><td>6</td><td>زراعة القرنية</td><td>5k</td></tr>
-        
-        <tr class="section-title"><td colspan="3">القسم الثاني: العظام والمفاصل</td></tr>
-        <tr><td>1</td><td>اصلاح الكسور</td><td>5k</td></tr>
-        <tr><td>2</td><td>تغيير المفاصل</td><td>5k</td></tr>
-        <tr><td>3</td><td>إصلاح الاربطة</td><td>5k</td></tr>
-        <tr><td>4</td><td>تطويل العظام</td><td>5k</td></tr>
 
-        <tr class="section-title"><td colspan="3">القسم الثالث: القلب</td></tr>
-        <tr><td>1</td><td>القسطرة</td><td>8k</td></tr>
-        <tr><td>2</td><td>الشرايين ومشاكلها</td><td>8k</td></tr>
-        <tr><td>3</td><td>تغيير الصمامات</td><td>8k</td></tr>
-        <tr><td>4</td><td>القلب المفتوح</td><td>8k</td></tr>
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للبوابة</a>
+        <h1>قائمة أسعار العمليات</h1>
+        <p>وزارة الصحة - KR</p>
+    </div>
 
-        <tr class="section-title"><td colspan="3">القسم الرابع: الدماغ وبقية الجسم</td></tr>
-        <tr><td>1</td><td>اورام الدماغ</td><td>5k</td></tr>
-        <tr><td>2</td><td>نزيف داخلي / نزيف بالدماغ</td><td>5k</td></tr>
-        <tr><td>3</td><td>حصى الكلى</td><td>5k</td></tr>
-        <tr><td>4</td><td>زراعة كلى</td><td>5k</td></tr>
-        <tr><td>5</td><td>الطلقات النارية</td><td>5k</td></tr>
-        <tr><td>6</td><td>اعراض الجسم الاخرى</td><td>5k</td></tr>
-        <tr><td>7</td><td>الرباط الصليبي</td><td>5k</td></tr>
-    </table>
-    <a href="index.html" style="color: #c5a059;">العودة للرئيسية</a>
+    <div class="category-section">
+        <div class="category-title"><i class="fa-solid fa-stethoscope"></i> الجراحة العامة والعيون</div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">1</span> استئصال المرارة</div><div class="price-tag">4k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">2</span> الأورام السطحية</div><div class="price-tag">4k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">3</span> عمليات الجهاز الهضمي</div><div class="price-tag">4k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">4</span> عمليات التجميل</div><div class="price-tag">4k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">5</span> تصحيح النظر</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">6</span> زراعة القرنية</div><div class="price-tag">5k</div></div>
+    </div>
+
+    <div class="category-section">
+        <div class="category-title"><i class="fa-solid fa-bone"></i> العظام والمفاصل</div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">1</span> اصلاح الكسور</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">2</span> تغيير المفاصل</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">3</span> إصلاح الاربطة</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">4</span> تطويل العظام</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">7</span> الرباط الصليبي</div><div class="price-tag">5k</div></div>
+    </div>
+
+    <div class="category-section">
+        <div class="category-title"><i class="fa-solid fa-heart-pulse"></i> عمليات القلب</div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">1</span> القسطرة</div><div class="price-tag">8k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">2</span> الشرايين ومشاكلها</div><div class="price-tag">8k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">3</span> تغيير الصمامات</div><div class="price-tag">8k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">4</span> القلب المفتوح</div><div class="price-tag">8k</div></div>
+    </div>
+
+    <div class="category-section">
+        <div class="category-title"><i class="fa-solid fa-brain"></i> الدماغ وبقية الجسم</div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">1</span> اورام الدماغ</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">2</span> نزيف داخلي / بالدماغ</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">3</span> حصى الكلى</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">4</span> زراعة كلى</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">5</span> الطلقات النارية</div><div class="price-tag">5k</div></div>
+        <div class="price-item"><div class="operation-name"><span class="op-number">6</span> اعراض الجسم الاخرى</div><div class="price-tag">5k</div></div>
+    </div>
+
 </body>
 </html>
