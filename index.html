@@ -219,7 +219,7 @@
                     <div style="width:35px"></div>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
-                    <img src="https://i.ibb.co/ksTPQyLD/KR-20260323-054129.png" alt="KR الهيكل التنظيمي" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="https://i.postimg.cc/ZRYD2xvG/KR-20260323-054129.png" alt="KR الهيكل التنظيمي" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 </div>
             </div>
 
@@ -275,11 +275,7 @@
             </div>
 
             <div id="operationsCatsView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>أقسام العمليات</h3>
-                    <div style="width:35px"></div>
-                </div>
+                <div class="modal-header"><div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>أقسام العمليات</h3><div style="width:35px"></div></div>
                 <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة العامة والعيون</span></div>
                 <div class="modal-item" onclick="showView('operationsCatsView', 'cat2View')"><span>العظام والمفاصل</span></div>
                 <div class="modal-item" onclick="showView('operationsCatsView', 'cat3View')"><span>القلب</span></div>
@@ -292,6 +288,7 @@
                 <div class="leader-item"><span>الأورام السطحية</span><div class="price-tag">4k</div></div>
                 <div class="leader-item"><span>تصحيح النظر</span><div class="price-tag">5k</div></div>
             </div>
+            
             <div id="rulesView" class="sub-view">
                 <div class="modal-header"><div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>قوانين الحجز</h3><div style="width:35px"></div></div>
                 <div class="modal-item"><span>1- يمنع تكرار الحجز.</span></div>
@@ -308,10 +305,7 @@
 
         function closeModal(id) { 
             const m = document.getElementById(id);
-            if(m) { 
-                m.classList.remove('active'); 
-                setTimeout(() => { m.style.display = 'none'; resetModals(); }, 400); 
-            }
+            if(m) { m.classList.remove('active'); setTimeout(() => { m.style.display = 'none'; resetModals(); }, 400); }
         }
 
         function closeModalOutside(e, id) { if(e.target.id === id) closeModal(id); }
@@ -322,7 +316,7 @@
         }
 
         function resetModals() {
-            const views = ['aboutMainView', 'servicesMainView', 'operationsCatsView'];
+            const views = ['aboutMainView', 'servicesMainView'];
             views.forEach(v => { if(document.getElementById(v)) document.getElementById(v).style.display = 'block'; });
             const subs = document.querySelectorAll('.sub-view');
             subs.forEach(s => { if(s.id !== 'aboutMainView' && s.id !== 'servicesMainView') s.style.display = 'none'; });
