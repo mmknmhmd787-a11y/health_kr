@@ -19,28 +19,29 @@
             overflow-x: hidden;
         }
 
-        .header-section { text-align: center; padding: 40px 20px 20px; }
-        .header-section h1 { font-size: 2rem; margin: 0; font-weight: bold; }
-        .header-section p { font-size: 1rem; opacity: 0.6; margin-top: 5px; }
+        .header-section { text-align: center; padding: 50px 20px 30px; }
+        .header-section h1 { font-size: 2.2rem; margin: 0; font-weight: bold; }
+        .header-section p { font-size: 1.1rem; opacity: 0.5; margin-top: 5px; }
 
         .container { max-width: 450px; margin: 0 auto; padding: 0 20px 50px; }
 
         .card {
-            background-color: #fff; border-radius: 25px; padding: 22px;
-            margin-bottom: 18px; text-align: center;
+            background-color: #fff; border-radius: 25px; padding: 25px;
+            margin-bottom: 20px; text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03); cursor: pointer; transition: 0.3s;
         }
-        .card:active { transform: scale(0.96); }
+        .card:active { transform: scale(0.95); }
 
         .icon-circle {
-            width: 55px; height: 55px; background-color: var(--soft-pink);
+            width: 60px; height: 60px; background-color: var(--soft-pink);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 12px; color: var(--primary-pink); font-size: 22px;
+            margin: 0 auto 15px; color: var(--primary-pink); font-size: 24px;
         }
 
-        .card h3 { margin: 0; font-size: 1.2rem; }
-        .card p { margin: 4px 0 0; font-size: 0.85rem; color: #a0888f; }
+        .card h3 { margin: 0; font-size: 1.3rem; }
+        .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
 
+        /* --- Modals --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
@@ -50,7 +51,8 @@
 
         .modal-content {
             background: #fff; width: 100%; max-width: 450px;
-            height: 80vh; border-radius: 35px 35px 0 0; padding: 25px 15px;
+            height: 85vh; 
+            border-radius: 40px 40px 0 0; padding: 30px 20px;
             position: relative; box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
             transform: translateY(100%); transition: transform 0.4s ease-out;
             overflow-y: auto;
@@ -59,47 +61,48 @@
 
         .modal-header { 
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee;
         }
+        .modal-header h3 { margin: 0; font-size: 1.5rem; }
 
         .close-btn {
             background: var(--soft-pink); color: var(--primary-pink);
-            width: 32px; height: 32px; border-radius: 50%;
+            width: 35px; height: 35px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
 
-        .modal-item {
-            padding: 15px; border-radius: 18px; background: #fafafa;
-            display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+        .modal-item, .leader-item {
+            padding: 18px; border-radius: 20px; background: #fafafa;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 12px;
             cursor: pointer; transition: 0.2s;
         }
-        .modal-item:hover { background: var(--soft-pink); }
-        .modal-item i { color: var(--primary-pink); font-size: 18px; width: 22px; text-align: center; }
+        .modal-item:hover { background: var(--soft-pink); transform: translateX(-5px); }
+        .modal-item i, .leader-item i { color: var(--primary-pink); font-size: 20px; width: 25px; text-align: center; }
 
         .sub-view { display: none; }
+        .leader-info h4 { margin: 0; font-size: 1.1rem; }
+        .leader-info p { margin: 2px 0 0; font-size: 0.9rem; color: #a0888f; }
+        .price-tag { margin-right: auto; font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 5px 12px; border-radius: 12px; font-size: 0.9rem; }
 
         .slider-container {
             position: relative; overflow: hidden; border-radius: 20px;
-            margin-top: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         .slides { display: flex; transition: transform 0.5s ease; width: 100%; }
-        .slides img { width: 100%; flex-shrink: 0; object-fit: cover; height: 200px; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .btn-prev { right: 8px; } .btn-next { left: 8px; }
-
-        .history-card { border-right: 3px solid var(--primary-pink); background: #fff; margin-bottom: 8px; padding: 12px; border-radius: 12px; }
-        .history-card strong { color: var(--primary-pink); display: block; }
+        .slides img { width: 100%; flex-shrink: 0; object-fit: cover; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
+        .btn-prev { right: 10px; } .btn-next { left: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header-section">
         <h1>وزارة الصحة</h1>
-        <p>بوابة KR MOH الرسمية</p>
+        <p>KR MOH</p>
     </div>
 
     <div class="container">
-        <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
+        <div class="card">
             <div class="icon-circle"><i class="fa-solid fa-file-medical"></i></div>
             <h3>تقديم وزارة الصحة</h3>
             <p>انضم لكوادرنا الصحية</p>
@@ -108,19 +111,25 @@
         <div class="card" onclick="openModal('applyStatusModal')">
             <div class="icon-circle"><i class="fa-solid fa-clipboard-list"></i></div>
             <h3>التقديمات</h3>
-            <p>حالة التوظيف الحالية</p>
+            <p>تحقق من حالة التقديمات حالياً</p>
+        </div>
+
+        <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
+            <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
+            <h3>حجز المواعيد</h3>
+            <p>احجز موعدك عبر الديسكورد</p>
         </div>
 
         <div class="card" onclick="openModal('aboutModal')">
             <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
             <h3>من نحن</h3>
-            <p>القادة والتاريخ والهيكل</p>
+            <p>تعرّف على الوزارة والقيادة</p>
         </div>
 
         <div class="card" onclick="openModal('servicesModal')">
             <div class="icon-circle"><i class="fa-solid fa-stethoscope"></i></div>
             <h3>خدماتنا</h3>
-            <p>الأسعار وقوانين الحجز</p>
+            <p>تصفح أسعار العمليات والقوانين</p>
         </div>
 
         <div class="slider-container">
@@ -134,35 +143,129 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="applyStatusModal" onclick="closeModalOutside(event, 'applyStatusModal')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close-btn" onclick="closeModal('applyStatusModal')"><i class="fa-solid fa-xmark"></i></div>
+                <h3>التقديمات</h3>
+                <div style="width:35px"></div>
+            </div>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span style="font-weight: bold;">تقديم وزارة الصحة</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+            </div>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                    <span style="font-weight: bold;">تقديم تطوع الهلال الاحمر</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+            </div>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span style="font-weight: bold;">تقديم الكلية الصحية</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="aboutModal" onclick="closeModalOutside(event, 'aboutModal')">
         <div class="modal-content">
             <div id="aboutMainView">
                 <div class="modal-header">
                     <div class="close-btn" onclick="closeModal('aboutModal')"><i class="fa-solid fa-xmark"></i></div>
                     <h3>عن الوزارة</h3>
-                    <div style="width:32px"></div>
+                    <div style="width:35px"></div>
                 </div>
-                
-                <div class="modal-item" onclick="window.location.href='leaders.html'">
+                <div class="modal-item" onclick="showView('aboutMainView', 'leadershipView')">
                     <i class="fa-solid fa-crown"></i>
                     <span>قيادة الوزارة</span>
                 </div>
-
-                <div class="modal-item" onclick="showView('aboutMainView', 'structureView')"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')"><i class="fa-solid fa-landmark"></i><span>تاريخ الوزراء</span></div>
+                <div class="modal-item"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>تاريخ الوزارة</span>
+                </div>
             </div>
 
-            <div id="structureView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('structureView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>الهيكل التنظيمي</h3><div style="width:32px"></div></div>
-                <div style="text-align: center;"><img src="https://i.postimg.cc/ZRYD2xvG/KR-20260323-054129.png" style="max-width: 100%; border-radius: 12px;"></div>
+            <div id="leadershipView" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>القيادة العليا</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>أمين الجوبري</h4><p>وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>لا يوجد حالياً</h4><p>نائب وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-hospital-user"></i><div class="leader-info"><h4>كريم السيد</h4><p>مدير المستشفى</p></div></div>
+                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>هورس العربي</h4><p>مسؤول المسعفين</p></div></div>
             </div>
 
             <div id="historyView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>تاريخ الوزراء</h3><div style="width:32px"></div></div>
-                <div style="padding: 5px;">
-                    <div class="history-card"><strong>1- ستارك</strong><small>28/9/2021</small></div>
-                    <div class="history-card"><strong>11- أمين الجوبري (الحالي)</strong><small>1/3/2026</small></div>
-                    <p style="text-align:center; color:#888; font-size:0.8rem;">(تم اختصار القائمة للترتيب)</p>
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>تاريخ الوزارة</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div style="padding: 10px; line-height: 1.6;">
+                    <p style="font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 10px; border-radius: 15px; text-align: center;">
+                        تأسست الوزارة في اليوم 21/9/2021
+                    </p>
+                    <h4 style="margin: 20px 0 10px;"><i class="fa-solid fa-clock-rotate-left" style="margin-left: 8px;"></i>وزراؤها عبر الزمن:</h4>
+                    <div style="font-size: 0.9rem;">
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">1- ستارك (أول وزير)</span>
+                            <small>تعيين: 28/9/2021</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">2- cJ314</span>
+                            <small>تعيين: 14/10/2021</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">3- خالد العتيبي</span>
+                            <small>تعيين: 3/1/2022 | النائب: أحمد الحربي</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">4- أحمد الحربي</span>
+                            <small>تعيين: 26/11/2022 | النائب: احمد البلوي | المستشار: أمين الجوبري</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">5- احمد البلوي</span>
+                            <small>تعيين: 1/6/2023 | النائب السابق: ريان البلوي</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">6- ريان البلوي</span>
+                            <small>تعيين: 07/09/2023 | النائب السابق: أمين الجوبري</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">7- أمين الجوبري</span>
+                            <small>تعيين: 2023/8/17 | النائب: صالح الزهراني | المستشار: أبو عطالله</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">8- صالح الزهراني</span>
+                            <small>تعيين: 2025/1/10 | النائب: s3udi101 | المستشار: أبو عطالله</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">9- خالد الأسمري</span>
+                            <small>تعيين: 2026/9/5 | النائب: fd4o | المستشارين: kld111 & u_04</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;">
+                            <span style="font-weight: bold;">10- ابو سعود</span>
+                            <small>تعيين: 2026/2/5 | النائب: u_04 | المستشار: rv8w</small>
+                        </div>
+                        <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start; border: 2px solid var(--primary-pink);">
+                            <span style="font-weight: bold; color: var(--primary-pink);">11- أمين الجوبري (الوزير الحالي)</span>
+                            <small>تعيين: 2026/3/1</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,42 +277,96 @@
                 <div class="modal-header">
                     <div class="close-btn" onclick="closeModal('servicesModal')"><i class="fa-solid fa-xmark"></i></div>
                     <h3>خدماتنا</h3>
-                    <div style="width:32px"></div>
+                    <div style="width:35px"></div>
                 </div>
-
-                <div class="modal-item" onclick="window.location.href='prices.html'">
+                <div class="modal-item" onclick="showView('servicesMainView', 'operationsCatsView')">
                     <i class="fa-solid fa-money-bill-wave"></i>
                     <span>أسعار العمليات</span>
                 </div>
+                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')">
+                    <i class="fa-solid fa-gavel"></i>
+                    <span>قوانين الحجز</span>
+                </div>
+            </div>
 
-                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')"><i class="fa-solid fa-gavel"></i><span>قوانين الحجز</span></div>
+            <div id="operationsCatsView" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>أقسام العمليات</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة العامة والعيون</span></div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat2View')"><span>العظام والمفاصل</span></div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat3View')"><span>القلب</span></div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat4View')"><span>الدماغ وبقية الجسم</span></div>
+            </div>
+
+            <div id="cat1View" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('cat1View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>الجراحة والعيون</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="leader-item"><span>استئصال المرارة</span><div class="price-tag">4k</div></div>
+                <div class="leader-item"><span>الأورام السطحية</span><div class="price-tag">4k</div></div>
+                <div class="leader-item"><span>عمليات الجهاز الهضمي</span><div class="price-tag">4k</div></div>
+                <div class="leader-item"><span>عمليات التجميل</span><div class="price-tag">4k</div></div>
+                <div class="leader-item"><span>تصحيح النظر</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>زراعة القرنية</span><div class="price-tag">5k</div></div>
+            </div>
+
+            <div id="cat2View" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('cat2View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>العظام والمفاصل</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="leader-item"><span>إصلاح الكسور</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>تغيير المفاصل</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>إصلاح الأربطة</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>تطويل العظام</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>الرباط الصليبي</span><div class="price-tag">5k</div></div>
+            </div>
+
+            <div id="cat3View" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('cat3View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>القلب</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="leader-item"><span>القسطرة</span><div class="price-tag">8k</div></div>
+                <div class="leader-item"><span>الشرايين ومشاكلها</span><div class="price-tag">8k</div></div>
+                <div class="leader-item"><span>تغيير الصمامات</span><div class="price-tag">8k</div></div>
+                <div class="leader-item"><span>القلب المفتوح</span><div class="price-tag">8k</div></div>
+            </div>
+
+            <div id="cat4View" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('cat4View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>الدماغ وبقية الجسم</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div class="leader-item"><span>أورام الدماغ</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>نزيف داخلي / بالدماغ</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>حصى الكلى</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>زراعة كلى</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>الطلقات النارية</span><div class="price-tag">5k</div></div>
+                <div class="leader-item"><span>أعراض الجسم الأخرى</span><div class="price-tag">5k</div></div>
             </div>
 
             <div id="rulesView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>قوانين الحجز</h3><div style="width:32px"></div></div>
-                <div style="font-size: 0.85rem;">
-                    <div class="modal-item" style="cursor:default;"><span>1- يمنع تكرار الحجز.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>2- يمنع المنشن منعاً باتاً.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>3- يمنع التحدث في شات الحجز منعاً باتاً.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>4- عدم التزامك للنموذج يعرضك للرفض.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>5- عدم كتابة بياناتك الكاملة يعرضك للرفض.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>6- يمنع إزعاج المسعفين.</span></div>
-                    <div class="modal-item" style="cursor:default; color: var(--primary-pink); font-weight: bold;"><span>7- يمنع التقديم للمطلوبين ومسؤولي البلاك ماركت.</span></div>
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>قوانين الحجز العامة</h3>
+                    <div style="width:35px"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="applyStatusModal" onclick="closeModalOutside(event, 'applyStatusModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('applyStatusModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>حالة التقديمات</h3>
-                <div style="width:32px"></div>
-            </div>
-            <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
-                <strong>تقديم وزارة الصحة</strong>
-                <span style="color:var(--primary-pink);">الحالة: مغلق ❌</span>
+                <div class="modal-item"><i class="fa-solid fa-rotate-left"></i><span>1- يمنع تكرار الحجز.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-at"></i><span>2- يمنع المنشن منعاً باتاً.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-comment-slash"></i><span>3- يمنع التحدث في شات الحجز منعاً باتاً.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-file-circle-exclamation"></i><span>4- عدم التزامك للنموذج يعرضك للرفض.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-id-card"></i><span>5- عدم كتابة بياناتك الكاملة يعرضك للرفض.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-user-slash"></i><span>6- يمنع إزعاج المسعفين أو من يخصهم الأمر.</span></div>
+                <div class="modal-item"><i class="fa-solid fa-user-lock"></i><span>7- يمنع التقديم للرتب التالية: المطلوبين لدى العدالة - مسؤولين البلاك ماركت - رئيس العصابة ونائبه.</span></div>
             </div>
         </div>
     </div>
@@ -217,23 +374,37 @@
     <script>
         function openModal(id) { 
             const m = document.getElementById(id);
-            if(m) { m.style.display = 'flex'; setTimeout(() => m.classList.add('active'), 10); }
+            if(m) {
+                m.style.display = 'flex';
+                setTimeout(() => m.classList.add('active'), 10);
+            }
         }
+
         function closeModal(id) { 
             const m = document.getElementById(id);
-            if(m) { m.classList.remove('active'); setTimeout(() => { m.style.display = 'none'; resetModals(); }, 400); }
+            if(m) {
+                m.classList.remove('active');
+                setTimeout(() => {
+                    m.style.display = 'none';
+                    resetModals();
+                }, 400);
+            }
         }
+
         function closeModalOutside(e, id) { if(e.target.id === id) closeModal(id); }
+
         function showView(hideId, showId) {
             document.getElementById(hideId).style.display = 'none';
             document.getElementById(showId).style.display = 'block';
         }
+
         function resetModals() {
-            ['aboutMainView', 'servicesMainView'].forEach(v => {
-                if(document.getElementById(v)) document.getElementById(v).style.display = 'block';
-            });
-            document.querySelectorAll('.sub-view').forEach(s => s.style.display = 'none');
+            const views = ['aboutMainView', 'servicesMainView'];
+            views.forEach(v => { if(document.getElementById(v)) document.getElementById(v).style.display = 'block'; });
+            const subs = document.querySelectorAll('.sub-view');
+            subs.forEach(s => s.style.display = 'none');
         }
+
         let idx = 0;
         function move(n) {
             const s = document.getElementById('imgSlider');
