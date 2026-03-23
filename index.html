@@ -102,7 +102,7 @@
     </div>
 
     <div class="container">
-        <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
+        <div class="card">
             <div class="icon-circle"><i class="fa-solid fa-file-medical"></i></div>
             <h3>تقديم وزارة الصحة</h3>
             <p>انضم لكوادرنا الصحية</p>
@@ -150,17 +150,29 @@
                 <h3>التقديمات</h3>
                 <div style="width:35px"></div>
             </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; cursor: default;">
-                <span style="font-weight: bold;">تقديم وزارة الصحة</span>
-                <span style="color: #d81b60; font-size: 0.9rem;">حالة التقديم : " غير متاح " ❌</span>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span style="font-weight: bold;">تقديم وزارة الصحة</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
             </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; cursor: default;">
-                <span style="font-weight: bold;">تقديم تطوع الهلال الاحمر</span>
-                <span style="color: #d81b60; font-size: 0.9rem;">حالة التقديم : " غير متاح " ❌</span>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                    <span style="font-weight: bold;">تقديم تطوع الهلال الاحمر</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
             </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; cursor: default;">
-                <span style="font-weight: bold;">تقديم الكلية الصحية</span>
-                <span style="color: #d81b60; font-size: 0.9rem;">حالة التقديم : " غير متاح " ❌</span>
+
+            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span style="font-weight: bold;">تقديم الكلية الصحية</span>
+                </div>
+                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
             </div>
         </div>
     </div>
@@ -173,13 +185,26 @@
                     <h3>عن الوزارة</h3>
                     <div style="width:35px"></div>
                 </div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'leadershipView')"><i class="fa-solid fa-crown"></i><span>قيادة الوزارة</span></div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'structureView')"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')"><i class="fa-solid fa-landmark"></i><span>تاريخ الوزارة</span></div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'leadershipView')">
+                    <i class="fa-solid fa-crown"></i>
+                    <span>قيادة الوزارة</span>
+                </div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'structureView')">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <span>الهيكل التنظيمي</span>
+                </div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>تاريخ الوزارة</span>
+                </div>
             </div>
 
             <div id="leadershipView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>القيادة العليا</h3><div style="width:35px"></div></div>
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>القيادة العليا</h3>
+                    <div style="width:35px"></div>
+                </div>
                 <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4>أمين الجوبري</h4><p>وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>لا يوجد حالياً</h4><p>نائب وزير الصحة</p></div></div>
                 <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4>عمار الهذلي</h4><p>مستشار وزير الصحة</p></div></div>
@@ -188,28 +213,47 @@
             </div>
 
             <div id="structureView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('structureView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>الهيكل التنظيمي</h3><div style="width:35px"></div></div>
-                <div style="text-align: center; padding: 10px;">
-                    <img src="https://i.ibb.co/JwTS5dYp/KR-20260323-054129.png" style="max-width: 100%; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('structureView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>الهيكل التنظيمي</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+                    <img src="https://i.postimg.cc/ZRYD2xvG/KR-20260323-054129.png" alt="KR الهيكل التنظيمي" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 </div>
             </div>
 
             <div id="historyView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>تاريخ الوزارة</h3><div style="width:35px"></div></div>
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>تاريخ الوزارة</h3>
+                    <div style="width:35px"></div>
+                </div>
                 <div style="padding: 10px;">
-                    <p style="background: var(--soft-pink); padding: 10px; border-radius: 15px; text-align: center; font-weight: bold;">تأسست في 21/9/2021</p>
-                    <div style="font-size: 0.85rem;">
-                        <div class="modal-item" style="cursor:default;"><span>1- ستارك (28/9/2021)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>2- cJ314 (14/10/2021)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>3- خالد العتيبي (3/1/2022)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>4- أحمد الحربي (26/11/2022)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>5- أحمد البلوي (1/6/2023)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>6- ريان البلوي (07/09/2023)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>7- أمين الجوبري (17/8/2023)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>8- صالح الزهراني (10/1/2025)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>9- خالد الأسمري (5/9/2026)</span></div>
-                        <div class="modal-item" style="cursor:default;"><span>10- أبو سعود (5/2/2026)</span></div>
-                        <div class="modal-item" style="cursor:default; border: 1px solid var(--primary-pink);"><span>11- أمين الجوبري (الحالي)</span></div>
+                    <p style="background: var(--soft-pink); padding: 10px; border-radius: 15px; text-align: center; font-weight: bold; color: var(--primary-pink);">تأسست الوزارة في اليوم 21/9/2021</p>
+                    <div class="history-list" style="font-size: 0.9rem; line-height: 1.5;">
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">1- ستارك (أول وزير)</span><small>28/9/2021</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">2- cJ314</span><small>14/10/2021</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">3- خالد العتيبي</span><small>تعيين: 3/1/2022 | النائب: أحمد الحربي</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">4- أحمد الحربي</span><small>تعيين: 26/11/2022 | النائب: احمد البلوي | المستشار: أمين الجوبري</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">5- احمد البلوي</span><small>تعيين: 1/6/2023 | النائب: ريان البلوي</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">6- ريان البلوي</span><small>تعيين: 07/09/2023 | النائب: أمين الجوبري</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">7- أمين الجوبري</span><small>تعيين: 2023/8/17 | النائب: صالح الزهراني | المستشار: أبو عطالله</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">8- صالح الزهراني</span><small>تعيين: 2025/1/10 | النائب: s3udi101</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">9- خالد الأسمري</span><small>تعيين: 2026/9/5 | النائب: fd4o | المستشارين: kld111 & u_04</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start;">
+                            <span style="font-weight:bold;">10- ابو سعود</span><small>تعيين: 2026/2/5 | النائب: u_04 | المستشار: rv8w</small></div>
+                        <div class="modal-item" style="cursor:default; flex-direction:column; align-items:flex-start; border:2px solid var(--primary-pink);">
+                            <span style="font-weight:bold; color:var(--primary-pink);">11- أمين الجوبري (الوزير الحالي)</span><small>1/3/2026</small></div>
                     </div>
                 </div>
             </div>
@@ -224,16 +268,18 @@
                     <h3>خدماتنا</h3>
                     <div style="width:35px"></div>
                 </div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'operationsCatsView')"><i class="fa-solid fa-money-bill-wave"></i><span>أسعار العمليات</span></div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')"><i class="fa-solid fa-gavel"></i><span>قوانين الحجز</span></div>
+                <div class="modal-item" onclick="showView('servicesMainView', 'operationsCatsView')">
+                    <i class="fa-solid fa-money-bill-wave"></i><span>أسعار العمليات</span></div>
+                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')">
+                    <i class="fa-solid fa-gavel"></i><span>قوانين الحجز</span></div>
             </div>
 
             <div id="operationsCatsView" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>الأقسام</h3><div style="width:35px"></div></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة والعيون</span></div>
+                <div class="modal-header"><div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>أقسام العمليات</h3><div style="width:35px"></div></div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة العامة والعيون</span></div>
                 <div class="modal-item" onclick="showView('operationsCatsView', 'cat2View')"><span>العظام والمفاصل</span></div>
                 <div class="modal-item" onclick="showView('operationsCatsView', 'cat3View')"><span>القلب</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat4View')"><span>الدماغ والجسم</span></div>
+                <div class="modal-item" onclick="showView('operationsCatsView', 'cat4View')"><span>الدماغ وبقية الجسم</span></div>
             </div>
 
             <div id="cat1View" class="sub-view">
@@ -241,38 +287,12 @@
                 <div class="leader-item"><span>استئصال المرارة</span><div class="price-tag">4k</div></div>
                 <div class="leader-item"><span>الأورام السطحية</span><div class="price-tag">4k</div></div>
                 <div class="leader-item"><span>تصحيح النظر</span><div class="price-tag">5k</div></div>
-                <div class="leader-item"><span>المياه البيضاء</span><div class="price-tag">5k</div></div>
             </div>
-
-            <div id="cat2View" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('cat2View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div><h3>العظام</h3><div style="width:35px"></div></div>
-                <div class="leader-item"><span>تغيير مفصل الركبة</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>ترميم الرباط الصليبي</span><div class="price-tag">6k</div></div>
-                <div class="leader-item"><span>الكسور العامة</span><div class="price-tag">4k</div></div>
-            </div>
-
-            <div id="cat3View" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('cat3View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div><h3>القلب</h3><div style="width:35px"></div></div>
-                <div class="leader-item"><span>قسطرة قلبية</span><div class="price-tag">7k</div></div>
-                <div class="leader-item"><span>قلب مفتوح</span><div class="price-tag">15k</div></div>
-            </div>
-
-            <div id="cat4View" class="sub-view">
-                <div class="modal-header"><div class="close-btn" onclick="showView('cat4View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div><h3>الدماغ والجسم</h3><div style="width:35px"></div></div>
-                <div class="leader-item"><span>استئصال ورم دماغي</span><div class="price-tag">15k</div></div>
-                <div class="leader-item"><span>الديسك (الظهر)</span><div class="price-tag">9k</div></div>
-                <div class="leader-item"><span>استئصال الزائدة</span><div class="price-tag">3k</div></div>
-            </div>
-
+            
             <div id="rulesView" class="sub-view">
                 <div class="modal-header"><div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div><h3>قوانين الحجز</h3><div style="width:35px"></div></div>
-                <div style="padding: 10px; font-size: 0.9rem;">
-                    <div class="modal-item" style="cursor:default;"><span>1- يمنع تكرار الحجز في نفس الوقت.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>2- يمنع المنشن للإدارة أو الأطباء.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>3- الحضور في الموعد المحدد ضروري.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>4- الاحترام مع الكادر الطبي واجب.</span></div>
-                    <div class="modal-item" style="cursor:default;"><span>5- البلاغات الكاذبة تعرضك للمخالفة.</span></div>
-                </div>
+                <div class="modal-item"><span>1- يمنع تكرار الحجز.</span></div>
+                <div class="modal-item"><span>2- يمنع المنشن منعاً باتاً.</span></div>
             </div>
         </div>
     </div>
@@ -296,10 +316,10 @@
         }
 
         function resetModals() {
-            const views = ['aboutMainView', 'servicesMainView', 'operationsCatsView'];
+            const views = ['aboutMainView', 'servicesMainView'];
             views.forEach(v => { if(document.getElementById(v)) document.getElementById(v).style.display = 'block'; });
             const subs = document.querySelectorAll('.sub-view');
-            subs.forEach(s => { if(s.id !== 'aboutMainView' && s.id !== 'servicesMainView' && s.id !== 'operationsCatsView') s.style.display = 'none'; });
+            subs.forEach(s => { if(s.id !== 'aboutMainView' && s.id !== 'servicesMainView') s.style.display = 'none'; });
         }
 
         let idx = 0;
