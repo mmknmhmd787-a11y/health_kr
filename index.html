@@ -189,10 +189,24 @@
                     <i class="fa-solid fa-crown"></i>
                     <span>قيادة الوزارة</span>
                 </div>
-                <div class="modal-item"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
+                <div class="modal-item" onclick="showView('aboutMainView', 'structureView')">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <span>الهيكل التنظيمي</span>
+                </div>
                 <div class="modal-item" onclick="showView('aboutMainView', 'historyView')">
                     <i class="fa-solid fa-landmark"></i>
                     <span>تاريخ الوزارة</span>
+                </div>
+            </div>
+
+            <div id="structureView" class="sub-view">
+                <div class="modal-header">
+                    <div class="close-btn" onclick="showView('structureView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h3>الهيكل التنظيمي</h3>
+                    <div style="width:35px"></div>
+                </div>
+                <div style="text-align: center; padding: 10px;">
+                    <img src="https://i.postimg.cc/ZRYD2xvG/KR-20260323-054129.png" style="width: 100%; border-radius: 20px;">
                 </div>
             </div>
 
