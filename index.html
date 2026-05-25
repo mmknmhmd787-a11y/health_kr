@@ -3,501 +3,709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة وزارة الصحة - KR MOH</title>
+    <title>بوابة خدمات وزارة الصحة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-pink: #d81b60;
-            --soft-pink: #fdf2f5;
-            --text-dark: #3d1f28;
-            --bg-gradient: linear-gradient(180deg, #f8c8d3 0%, #f9e1e7 100%);
+            --primary-color: #007A48; 
+            --secondary-color: #4A90E2; 
+            --bg-color: #f4f7f5; 
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --danger-color: #e53e3e;
+            --success-color: #38a169;
+            --warning-color: #dd6b20;
+            --gray-status: #a0aec0;
+            --transition-speed: 0.3s;
         }
 
-        body { 
-            margin: 0; font-family: 'Segoe UI', sans-serif; 
-            background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
         }
 
-        .header-section { text-align: center; padding: 50px 20px 30px; }
-        .header-section h1 { font-size: 2.2rem; margin: 0; font-weight: bold; }
-        .header-section p { font-size: 1.1rem; opacity: 0.5; margin-top: 5px; }
-
-        .time-widget {
-            display: inline-flex;
-            align-items: center;
+        /* -----------------------------------------
+           1. شاشة التحميل (Preloader)
+        ----------------------------------------- */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            background: rgba(216, 27, 96, 0.08);
-            border: 1px solid var(--primary-pink);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-pink);
-            gap: 10px;
-            margin-top: 15px;
-            direction: ltr;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .divider { opacity: 0.3; }
 
-        .container { max-width: 450px; margin: 0 auto; padding: 0 20px 50px; }
+        .loader-logo {
+            color: var(--primary-color);
+            font-size: 40px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
 
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 122, 72, 0.1);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+
+        .fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        /* -----------------------------------------
+           2. الهيدر وأزرار العودة
+        ----------------------------------------- */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-color);
+            position: relative;
+        }
+
+        .logo-area h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .logo-area p { color: var(--text-muted); font-size: 14px; }
+
+        .back-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            display: none;
+            transition: background var(--transition-speed);
+            z-index: 10;
+        }
+
+        .back-btn:hover { background-color: #005c36; }
+
+        /* -----------------------------------------
+           3. الحاويات وتخطيط الصفحات
+        ----------------------------------------- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        #services-page, #status-page, #about-page, #leadership-page, #prices-page, #rights-page, #rules-page { display: none; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* -----------------------------------------
+           4. تصميم الكروت وحركاتها
+        ----------------------------------------- */
         .card {
-            background-color: #fff; border-radius: 25px; padding: 25px;
-            margin-bottom: 20px; text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03); cursor: pointer; transition: 0.3s;
-        }
-        .card:active { transform: scale(0.95); }
-
-        .icon-circle {
-            width: 60px; height: 60px; background-color: var(--soft-pink);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 15px; color: var(--primary-pink); font-size: 24px;
-        }
-
-        .card h3 { margin: 0; font-size: 1.3rem; }
-        .card p { margin: 5px 0 0; font-size: 0.9rem; color: #a0888f; }
-
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
-            display: none; justify-content: center; align-items: flex-end; z-index: 1000;
-        }
-        .modal-overlay.active { display: flex; }
-
-        .modal-content {
-            background: #fff; width: 100%; max-width: 450px;
-            height: 85vh; 
-            border-radius: 40px 40px 0 0; padding: 30px 20px;
-            position: relative; box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
-            transform: translateY(100%); transition: transform 0.4s ease-out;
-            overflow-y: auto;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-
-        .modal-header { 
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee;
-        }
-        .modal-header h3 { margin: 0; font-size: 1.5rem; }
-
-        .close-btn {
-            background: var(--soft-pink); color: var(--primary-pink);
-            width: 35px; height: 35px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 35px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 122, 72, 0.1);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .modal-item, .leader-item {
-            padding: 18px; border-radius: 20px; background: #fafafa;
-            display: flex; align-items: center; gap: 15px; margin-bottom: 12px;
-            cursor: pointer; transition: 0.2s;
-        }
-        .modal-item:hover { background: var(--soft-pink); transform: translateX(-5px); }
-        .modal-item i, .leader-item i { color: var(--primary-pink); font-size: 20px; width: 25px; text-align: center; }
+        .animate-cards .card { animation: fadeInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 
-        .sub-view { display: none; }
-        .leader-info h4 { margin: 0; font-size: 1.1rem; }
-        .leader-info p { margin: 2px 0 0; font-size: 0.9rem; color: #a0888f; }
-        .price-tag { margin-right: auto; font-weight: bold; color: var(--primary-pink); background: var(--soft-pink); padding: 5px 12px; border-radius: 12px; font-size: 0.9rem; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        .slider-container {
-            position: relative; overflow: hidden; border-radius: 20px;
-            margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+
+        .card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 12px 20px rgba(0, 122, 72, 0.12);
+            border-color: var(--primary-color);
         }
-        .slides { display: flex; transition: transform 0.5s ease; width: 100%; }
-        .slides img { width: 100%; flex-shrink: 0; object-fit: cover; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .btn-prev { right: 10px; } .btn-next { left: 10px; }
+
+        .card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px;
+            background-color: var(--primary-color); transform: scaleX(0); transition: transform var(--transition-speed) ease;
+        }
+
+        .card:hover::after { transform: scaleX(1); }
+
+        .card-icon {
+            width: 70px; height: 70px; background-color: rgba(0, 122, 72, 0.1); color: var(--primary-color);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .card:hover .card-icon { background-color: var(--primary-color); color: #ffffff; }
+        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--primary-color); }
+        .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* -----------------------------------------
+           5. واجهة حالة التتقديمات
+        ----------------------------------------- */
+        .status-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .status-item {
+            background-color: var(--card-bg); border-radius: 12px; padding: 20px 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; transition: transform 0.2s ease;
+        }
+        .status-item:hover { transform: translateX(-5px); }
+        .status-item.open { border-right: 5px solid var(--success-color); }
+        .status-item.closed { border-right: 5px solid var(--danger-color); }
+        .status-info { display: flex; align-items: center; gap: 20px; }
+        .status-icon-box { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        .open .status-icon-box { background-color: rgba(56, 161, 105, 0.1); color: var(--success-color); }
+        .closed .status-icon-box { background-color: rgba(229, 62, 62, 0.1); color: var(--danger-color); }
+        .status-details h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
+        .status-details p { font-size: 13px; color: var(--text-muted); }
+        .status-badge { padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .open .status-badge { background-color: rgba(56, 161, 105, 0.12); color: var(--success-color); }
+        .closed .status-badge { background-color: rgba(229, 62, 62, 0.12); color: var(--danger-color); }
+        .blink-dot { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+        .action-link-btn { background-color: var(--success-color); color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-right: 10px; display: inline-flex; align-items: center; gap: 5px; }
+        .action-link-btn:hover { background-color: #2f855a; }
+
+        /* -----------------------------------------
+           6. واجهة قيادة الوزارة (ستايل عمار النظيف)
+        ----------------------------------------- */
+        .leadership-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .leadership-card {
+            background-color: #fafdfa; 
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(0, 122, 72, 0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .leader-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.2;
+        }
+
+        .leader-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+
+        .leader-status-box {
+            align-self: flex-start; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .leader-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* مخصصات الألوان للحالات الثلاث */
+        .status-active { color: var(--success-color); }
+        .status-active .leader-status-dot { background-color: var(--success-color); }
+
+        .status-offline { color: var(--text-muted); }
+        .status-offline .leader-status-dot { background-color: var(--gray-status); }
+
+        .status-busy { color: var(--danger-color); }
+        .status-busy .leader-status-dot { background-color: var(--danger-color); }
+
+
+        /* -----------------------------------------
+           7. واجهة أسعار العمليات
+        ----------------------------------------- */
+        .price-section-container {
+            background: var(--card-bg); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px; max-width: 900px; margin: 0 auto; border-top: 5px solid var(--primary-color);
+        }
+        .tabs-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .tab-btn {
+            background-color: #edf2f7; border: none; padding: 10px 20px; font-size: 15px;
+            font-weight: 600; color: var(--text-main); border-radius: 30px; cursor: pointer; transition: all var(--transition-speed);
+        }
+        .tab-btn.active, .tab-btn:hover { background-color: var(--primary-color); color: #fff; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+        .price-table { width: 100%; border-collapse: collapse; text-align: right; }
+        .price-table th, .price-table td { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; }
+        .price-table th { background-color: rgba(0, 122, 72, 0.05); color: var(--primary-color); font-weight: 700; }
+        .price-badge { background-color: rgba(0, 122, 72, 0.1); color: var(--primary-color); padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 14px; display: inline-block; }
+
+        /* -----------------------------------------
+           8. وثيقة حقوق المواطن العامة وقوانين الحجز
+        ----------------------------------------- */
+        .rights-container, .rules-container { background: var(--card-bg); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 35px; max-width: 900px; margin: 0 auto; border-top: 5px solid var(--primary-color); }
+        .rules-container { border-top: 5px solid var(--danger-color); }
+        .rights-list, .rules-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+        .rights-item, .rules-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px; background-color: #f8faf9; border-radius: 10px; border-right: 4px solid var(--primary-color); transition: transform 0.2s ease; }
+        .rules-item { background-color: #fffafb; border-right: 4px solid var(--danger-color); }
+        .rights-item:hover { transform: translateX(-5px); background-color: #f1f6f3; }
+        .rules-item:hover { transform: translateX(-5px); background-color: #fff5f5; }
+        .rights-num, .rules-num { background-color: var(--primary-color); color: #ffffff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+        .rules-num { background-color: var(--danger-color); }
+        .rights-text, .rules-text { font-size: 15px; color: var(--text-main); line-height: 1.7; }
+        .rules-text { font-weight: 600; }
+
+        /* -----------------------------------------
+           9. الفوتر
+        ----------------------------------------- */
+        footer { background-color: var(--primary-color); color: #ffffff; text-align: center; padding: 15px; font-size: 13px; margin-top: auto; }
+
+        @media (max-width: 768px) {
+            .container { margin: 20px auto; }
+            .services-grid { grid-template-columns: 1fr; }
+            .back-btn { position: static; transform: none; margin: 10px auto 0; display: block; width: fit-content; }
+            .tabs-nav { flex-direction: column; width: 100%; }
+            .tab-btn { width: 100%; text-align: center; }
+            .price-section-container, .rights-container, .rules-container { padding: 20px 15px; }
+            .status-item { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .status-badge { align-self: flex-end; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-section">
-        <h1>وزارة الصحة</h1>
-        <p>KR MOH</p>
+    <div id="loader-wrapper">
+        <div class="loader-logo"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <button class="back-btn" id="backToMainBtn" onclick="showMainPage()"><i class="fa-solid fa-arrow-right"></i> العودة للرئيسية</button>
+        <button class="back-btn" id="backToServicesBtn" onclick="backToServices()"><i class="fa-solid fa-arrow-right"></i> العودة للخدمات</button>
+        <button class="back-btn" id="backToAboutBtn" onclick="backToAbout()"><i class="fa-solid fa-arrow-right"></i> العودة لـ من نحن</button>
+        <div class="logo-area">
+            <h1><i class="fa-solid fa-heart-pulse"></i> بوابة الخدمات الإلكترونية</h1>
+            <p>وزارة الصحة</p>
+        </div>
+    </header>
+
+    <div class="container animate-cards" id="main-page">
+        <div class="services-grid">
+            <a href="https://forms.gle/Z9VgVbLmquyaYfHh9" target="_blank" class="card">
+                <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <div class="card-title">تقديم وزارة الصحة</div>
+                <div class="card-desc">بوابة التوظيف وتقديم الطلبات والمعاملات الرسمية لدي الوزارة.</div>
+            </a>
+            <div class="card" onclick="showStatusPage()">
+                <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <div class="card-title">حالة التقديمات <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">متابعة لجان بوابات تقديم التوظيف والفرص المتاحة والمغلقة حالياً.</div>
+            </div>
+            <a href="#" class="card">
+                <div class="card-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                <div class="card-title">حجز المواعيد</div>
+                <div class="card-desc">حجز مواعيد العيادات والمستشفيات والمراكز الصحية الأولية.</div>
+            </a>
+            <div class="card" onclick="showAboutPage()">
+                <div class="card-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="card-title">من نحن <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">نبذة عن رؤية وزارة الصحة ورسالتها وأهدافها الاستراتيجية وقياداتها.</div>
+            </div>
+            <div class="card" onclick="showServicesPage()">
+                <div class="card-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                <div class="card-title">خدماتنا <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">دليل الخدمات الشامل، أسعار العمليات، حقوق المواطن، وقوانين وأنظمة الحجز.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="about-page">
+        <div class="page-title">عن وزارة الصحة</div>
+        <div class="services-grid" style="justify-content: center; max-width: 700px; margin: 0 auto;">
+            <div class="card" onclick="showLeadershipPage()">
+                <div class="card-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <div class="card-title">قيادة الوزارة <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">البطاقات التعريفية المباشرة وحالة الاتصال للقيادات الإدارية للوزارة.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+                <div class="card-title">الرؤية والرسالة</div>
+                <div class="card-desc">رسالتنا تقديم الرعاية الصحية الشاملة والمتكاملة لجميع أفراد المجتمع بكفاءة عالية.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="leadership-page">
+        <div class="page-title"><i class="fa-solid fa-users-gear"></i> القيادة العليا للوزارة</div>
         
-        <div class="time-widget">
-            <span id="display-date">2026/3/24</span>
-            <span class="divider">|</span>
-            <span id="display-time">00:00:00 ص</span>
+        <div class="leadership-container">
+            
+            <div class="leadership-card">
+                <div class="leader-name">عمار</div>
+                <div class="leader-title">وزير الصحة</div>
+                <div class="leader-status-box status-active">
+                    <div class="leader-status-dot"></div>
+                    <span>نشط الآن</span>
+                </div>
+            </div>
+
+            <div class="leadership-card">
+                <div class="leader-name">كريم السيد</div>
+                <div class="leader-title">نائب وزير الصحة</div>
+                <div class="leader-status-box status-offline">
+                    <div class="leader-status-dot"></div>
+                    <span>غير متواجد</span>
+                </div>
+            </div>
+
+            <div class="leadership-card">
+                <div class="leader-name">هورس العربي</div>
+                <div class="leader-title">مستشار وزير الصحة</div>
+                <div class="leader-status-box status-busy">
+                    <div class="leader-status-dot"></div>
+                    <span>مشغول</span>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="container">
-        <div class="card">
-            <div class="icon-circle"><i class="fa-solid fa-file-medical"></i></div>
-            <h3>تقديم وزارة الصحة</h3>
-            <p>انضم لكوادرنا الصحية</p>
-        </div>
-
-        <div class="card" onclick="openModal('applyStatusModal')">
-            <div class="icon-circle"><i class="fa-solid fa-clipboard-list"></i></div>
-            <h3>التقديمات</h3>
-            <p>تحقق من حالة التقديمات حالياً</p>
-        </div>
-
-        <div class="card" onclick="window.open('https://discord.com/channels/851534602576461854/878551331508486224', '_blank')">
-            <div class="icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
-            <h3>حجز المواعيد</h3>
-            <p>احجز موعدك عبر الديسكورد</p>
-        </div>
-
-        <div class="card" onclick="openModal('aboutModal')">
-            <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
-            <h3>من نحن</h3>
-            <p>تعرّف على الوزارة والقيادة</p>
-        </div>
-
-        <div class="card" onclick="openModal('servicesModal')">
-            <div class="icon-circle"><i class="fa-solid fa-stethoscope"></i></div>
-            <h3>خدماتنا</h3>
-            <p>تصفح أسعار العمليات والقوانين</p>
-        </div>
-
-        <div class="slider-container">
-            <div class="slides" id="imgSlider">
-                <img src="https://i.ibb.co/0ytYBzNd/image-5.png" alt="1">
-                <img src="https://i.ibb.co/2YhW65mk/IMG-3065.png" alt="2">
-                <img src="https://i.ibb.co/pBP81WkB/1647462106957.png" alt="3">
-            </div>
-            <button class="nav-btn btn-prev" onclick="move(1)">❯</button>
-            <button class="nav-btn btn-next" onclick="move(-1)">❮</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="applyStatusModal" onclick="closeModalOutside(event, 'applyStatusModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('applyStatusModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>التقديمات</h3>
-                <div style="width:35px"></div>
-            </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <i class="fa-solid fa-hospital-user"></i>
-                    <span style="font-weight: bold;">تقديم وزارة الصحة</span>
+    <div class="container" id="status-page">
+        <div class="page-title"><i class="fa-solid fa-magnifying-glass-chart"></i> مؤشر لجان التقديم والتوظيف الحالي</div>
+        <div class="status-container">
+            <div class="status-item open">
+                <div class="status-info">
+                    <div class="status-icon-box"><i class="fa-solid fa-hospital"></i></div>
+                    <div class="status-details">
+                        <h3>تقديم وزارة الصحة الرسمية</h3>
+                        <p>استقبال ملفات الكادر الإداري والميداني حالياً.</p>
+                    </div>
                 </div>
-                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
-            </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <i class="fa-solid fa-hand-holding-medical"></i>
-                    <span style="font-weight: bold;">تقديم تطوع الهلال الاحمر</span>
+                <div style="display: flex; align-items: center;">
+                    <a href="https://forms.gle/Z9VgVbLmquyaYfHh9" target="_blank" class="action-link-btn">قدم الآن <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></a>
+                    <span class="status-badge"><i class="fa-solid fa-circle blink-dot"></i> متاح للتقديم</span>
                 </div>
-                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
             </div>
-            <div class="modal-item" style="flex-direction: column; align-items: flex-start; gap: 5px; cursor: default;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <span style="font-weight: bold;">تقديم الكلية الصحية</span>
+            <div class="status-item closed">
+                <div class="status-info">
+                    <div class="status-icon-box"><i class="fa-solid fa-truck-medical"></i></div>
+                    <div class="status-details">
+                        <h3>تطوع هيئة الهلال الأحمر</h3>
+                        <p>بوابة التسجيل في الفرص الإسعافية والتطوعية الميدانية.</p>
+                    </div>
                 </div>
-                <div style="margin-right: 37px; font-size: 0.95rem; color: #d81b60;">حالة التقديم : " غير متاح " ❌</div>
+                <span class="status-badge"><i class="fa-solid fa-circle"></i> مغلق حالياً</span>
+            </div>
+            <div class="status-item closed">
+                <div class="status-info">
+                    <div class="status-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="status-details">
+                        <h3>بوابة الكلية الصحية للعلوم الطبية</h3>
+                        <p>استقبال طلبات الالتحاق والدراسة والتأهيل الأكاديمي.</p>
+                    </div>
+                </div>
+                <span class="status-badge"><i class="fa-solid fa-circle"></i> مغلق حالياً</span>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="aboutModal" onclick="closeModalOutside(event, 'aboutModal')">
-        <div class="modal-content">
-            <div id="aboutMainView">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="closeModal('aboutModal')"><i class="fa-solid fa-xmark"></i></div>
-                    <h3>عن الوزارة</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'leadershipView')"><i class="fa-solid fa-crown"></i><span>قيادة الوزارة</span></div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'structureView')"><i class="fa-solid fa-sitemap"></i><span>الهيكل التنظيمي</span></div>
-                <div class="modal-item" onclick="showView('aboutMainView', 'historyView')"><i class="fa-solid fa-landmark"></i><span>تاريخ الوزارة</span></div>
+    <div class="container" id="services-page">
+        <div class="page-title">قائمة الخدمات المتاحة</div>
+        <div class="services-grid">
+            <div class="card" onclick="showPricesPage()">
+                <div class="card-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                <div class="card-title">أسعار العمليات <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">الاستعلام الموحد عن أسعار وتكاليف العمليات والإجراءات الطبية المعتمدة.</div>
             </div>
-
-            <div id="structureView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('structureView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>الهيكل التنظيمي</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div style="text-align: center;"><img src="https://i.postimg.cc/ZRYD2xvG/KR-20260323-054129.png" style="width: 100%; border-radius: 20px;"></div>
+            <div class="card" onclick="showRightsPage()">
+                <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="card-title">حقوق المواطن العامة <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">وثيقة حقوق وواجبات المرضى والمراجعين في المنشآت الطبية.</div>
             </div>
-
-            <div id="leadershipView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('leadershipView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>القيادة العليا</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><i class="fa-solid fa-user-tie"></i><div class="leader-info"><h4> عمار </h4><p>وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-user-shield"></i><div class="leader-info"><h4>كريم السيد </h4><p>نائب وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-user-gear"></i><div class="leader-info"><h4> هورس العربي</h4><p>مستشار وزير الصحة</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-hospital-user"></i><div class="leader-info"><h4>ابو عمر </h4><p>مدير المستشفى</p></div></div>
-                <div class="leader-item"><i class="fa-solid fa-truck-medical"></i><div class="leader-info"><h4>بينكو </h4><p>مسؤول المسعفين</p></div></div>
-            </div>
-
-            <div id="historyView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('historyView', 'aboutMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>تاريخ الوزارة</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div style="padding: 10px;">
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>1- ستارك</span><small>28/9/2021</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>2- cJ314</span><small>14/10/2021</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>3- خالد العتيبي</span><small>3/1/2022</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>4- أحمد الحربي</span><small>26/11/2022</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>5- احمد البلوي</span><small>1/6/2023</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>6- ريان البلوي</span><small>07/09/2023</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>7- أمين الجوبري</span><small>2023/8/17</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>8- صالح الزهراني</span><small>2025/1/10</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>9- خالد الأسمري</span><small>2026/9/5</small></div>
-                    <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>10- ابو سعود</span><small>2026/2/5</small></div>
-                  <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start;"><span>11- أمين الجوبري</span><small>2026/3/1</small></div>
-           <div class="modal-item" style="cursor: default; flex-direction: column; align-items: flex-start; border: 2px solid var(--primary-pink);"><span style="font-weight: bold; color: var(--primary-pink);">12- عمار </span><small>2026/5/9</small></div>
-                 </div>
+            <div class="card" onclick="showRulesPage()">
+                <div class="card-icon"><i class="fa-solid fa-gavel"></i></div>
+                <div class="card-title">قوانين الحجز <i class="fa-solid fa-chevron-left" style="font-size: 12px; margin-right: 5px;"></i></div>
+                <div class="card-desc">السياسات والشروط والأحكام المنظمة لإلغاء وتأكيد وحضور المواعيد الطبية.</div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="servicesModal" onclick="closeModalOutside(event, 'servicesModal')">
-        <div class="modal-content">
-            <div id="servicesMainView">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="closeModal('servicesModal')"><i class="fa-solid fa-xmark"></i></div>
-                    <h3>خدماتنا</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'operationsCatsView')"><i class="fa-solid fa-money-bill-wave"></i><span>أسعار العمليات</span></div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'citizenRightsView')"><i class="fa-solid fa-scale-balanced"></i><span>حقوق المواطن العامة</span></div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'rulesView')"><i class="fa-solid fa-gavel"></i><span>قوانين الحجز</span></div>
-                <div class="modal-item" onclick="showView('servicesMainView', 'formsView')"><i class="fa-solid fa-file-signature"></i><span>النماذج</span></div>
+    <div class="container" id="prices-page">
+        <div class="page-title"><i class="fa-solid fa-calculator"></i> دليل تكاليف وأسعار العمليات</div>
+        <div class="price-section-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab(event, 'surgery-tab')">الجراحة والعيون</button>
+                <button class="tab-btn" onclick="switchTab(event, 'ortho-tab')">العظام والمفاصل</button>
+                <button class="tab-btn" onclick="switchTab(event, 'heart-tab')">القلب</button>
+                <button class="tab-btn" onclick="switchTab(event, 'brain-tab')">الدماغ وبقية الجسم</button>
             </div>
-
-            <div id="operationsCatsView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('operationsCatsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>أقسام العمليات</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat1View')"><span>الجراحة العامة والعيون</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat2View')"><span>العظام والمفاصل</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat3View')"><span>القلب</span></div>
-                <div class="modal-item" onclick="showView('operationsCatsView', 'cat4View')"><span>الدماغ وبقية الجسم</span></div>
+            <div id="surgery-tab" class="tab-content active">
+                <table class="price-table">
+                    <thead><tr><th>نوع العملية الإجرائية</th><th>التكلفة التقريبية</th></tr></thead>
+                    <tbody>
+                        <tr><td>استئصال المرارة</td><td><span class="price-badge">6,000</span></td></tr>
+                        <tr><td>الأورام السطحية</td><td><span class="price-badge">4,000</span></td></tr>
+                        <tr><td>عمليات التجميل</td><td><span class="price-badge">7,000</span></td></tr>
+                        <tr><td>تصحيح النظر</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>زراعة القرنية</td><td><span class="price-badge">10,000</span></td></tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div id="cat1View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat1View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>الجراحة والعيون</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>استئصال المرارة</span><div class="price-tag">6k</div></div>
-                <div class="leader-item"><span>الأورام السطحية</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>عمليات التجميل</span><div class="price-tag">7k</div></div>
-                <div class="leader-item"><span>تصحيح النظر</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>زراعة القرنية</span><div class="price-tag">10k</div></div>
+            <div id="ortho-tab" class="tab-content">
+                <table class="price-table">
+                    <thead><tr><th>نوع العملية الإجرائية</th><th>التكلفة التقريبية</th></tr></thead>
+                    <tbody>
+                        <tr><td>معالجة الكسور</td><td><span class="price-badge">7,000</span></td></tr>
+                        <tr><td>معالجة المفاصل</td><td><span class="price-badge">6,000</span></td></tr>
+                        <tr><td>قطع الرباط الصليبي</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>تجبير الكسور بجميع أنواعها</td><td><span class="price-badge">4,000</span></td></tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div id="cat2View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat2View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>العظام والمفاصل</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>معالجة الكسور</span><div class="price-tag">7k</div></div>
-                <div class="leader-item"><span>معالجة المفاصل</span><div class="price-tag">6k</div></div>
-                <div class="leader-item"><span>قطع الرباط الصليبي</span><div class="price-tag">8k</div></div>
-           <div class="leader-item"><span>تجبير الكسور بجميع أنواعها </span><div class="price-tag">4k</div></div>
+            <div id="heart-tab" class="tab-content">
+                <table class="price-table">
+                    <thead><tr><th>نوع العملية الإجرائية</th><th>التكلفة التقريبية</th></tr></thead>
+                    <tbody>
+                        <tr><td>قسطره القلب</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>الشرايين</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>معالجة الصمامات</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>القلب المفتوح</td><td><span class="price-badge">12,000</span></td></tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div id="cat3View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat3View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>قسم القلب</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>قسطره القلب </span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>الشرايين</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>معالجة الصمامات</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>القلب المفتوح</span><div class="price-tag">12k</div></div>
-            </div>
-
-            <div id="cat4View" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('cat4View', 'operationsCatsView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>الدماغ وبقية الجسم</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="leader-item"><span>أورام الدماغ</span><div class="price-tag">8k</div></div>
-                <div class="leader-item"><span>نزيف داخلي</span><div class="price-tag">6k</div></div>
-                <div class="leader-item"><span>حصى الكلى</span><div class="price-tag">4k</div></div>
-                <div class="leader-item"><span>زراعة كلى</span><div class="price-tag">6k</div></div>
-                <div class="leader-item"><span>معالجة الطلقات النارية</span><div class="price-tag">3k</div></div>
-            </div>
-
-            <div id="citizenRightsView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('citizenRightsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>حقوق المواطن العامة</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item"><span>1- أن يتم أعلامك عن حقوقك بطريقة واضحة ومفهومة ، .</span></div>
-                <div class="modal-item"><span>2- الحصول على أنسب علاج والتمتع بأفضل الخدمات الملائمة له والتي تساعد على معالجة ألأمه  وتخطي مراحل العلاج بأمان ،.</span></div>
-                <div class="modal-item"><span>3- الحصول على أفضل أوجه الرعاية الصحية التي تحفظ كرامته وحريته وتبث أمل الشفاء في نفسه ،.</span></div>
-                <div class="modal-item"><span>4- التعرف على هوية الفريق الطبي و الطاقم الذي  يقوم على رعايته وخدمته ومعرفة الطبيب المسؤول المباشر عن  معالجته ومتابعة حالته ، .</span></div>
-                <div class="modal-item"><span>5- أختيار الطبيب المعالج وطلب رأي طبي أخر ( لا تطبق بعض الأوقات ) ..</span></div>
-                <div class="modal-item"><span>6- أن يتم اعلامك عن وضعك الصحي الحالي ، خيارات العلاج ، المخاطر المترتبة من العلاج ، النتائج المتوقعة من تلقي العلاج ، رفض العلاج ومدة الإقامة ، بالإضافة إلى حقه في معرفة تكاليف معالجته التقديرية مع حقه في المشاركة الكاملة في اتخاذ القرارات المتعلقة بالعلاج ، يمكنة الخروج من المستشفى على مسؤوليتة الخاصة ..</span></div>
-                <div class="modal-item"><span>7- الحصول على التوعية والتأهيل والإرشاد ليكون قادراً على ممارسة حقه في المشاركة واتخاذ القرارات المتعلقة بعلاجه والتمييز بين الخيارات المتاحة ، له الحق في رفض العلاج أو طلب تخفيف الألم بطريقة فعالة ..</span></div>
-                <div class="modal-item"><span>8- التأكد من استعمال جميع الحقوق حسب السياسة ..</span></div>
-            </div>
-
-            <div id="rulesView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('rulesView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>قوانين الحجز</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item"><span>1- يمنع تكرار الحجز.</span></div>
-                <div class="modal-item"><span>2- يمنع المنشن منعاً باتاً.</span></div>
-                <div class="modal-item"><span>3- يمنع التحدث في شات الحجز.</span></div>
-                <div class="modal-item"><span>4- عدم الالتزام بالنموذج يعرضك للرفض.</span></div>
-                <div class="modal-item"><span>5- عدم كتابة بياناتك يعرضك للرفض.</span></div>
-                <div class="modal-item"><span>6- يمنع إزعاج المسعفين.</span></div>
-                <div class="modal-item"><span>7- يمنع التقديم مطلوبين العداله و من يملك سوابق و أعضاء العصابات.</span></div>
-            </div>
-
-            <div id="formsView" class="sub-view">
-                <div class="modal-header">
-                    <div class="close-btn" onclick="showView('formsView', 'servicesMainView')"><i class="fa-solid fa-arrow-right"></i></div>
-                    <h3>النماذج</h3>
-                    <div style="width:35px"></div>
-                </div>
-                <div class="modal-item" onclick="openModal('vaccineModal')"><i class="fa-solid fa-syringe"></i><span>نموذج حجز اللقاح</span></div>
-                <div class="modal-item" onclick="openModal('bloodModal')"><i class="fa-solid fa-droplet"></i><span>نموذج حجز تبرع بالدم</span></div>
-                <div class="modal-item" onclick="openModal('doctorModal')"><i class="fa-solid fa-user-doctor"></i><span>نموذج حجز دكتور</span></div>
-                <div class="modal-item" onclick="openModal('checkupModal')"><i class="fa-solid fa-microscope"></i><span>نموذج حجز فحص</span></div>
+            <div id="brain-tab" class="tab-content">
+                <table class="price-table">
+                    <thead><tr><th>نوع العملية الإجرائية</th><th>التكلفة التقريبية</th></tr></thead>
+                    <tbody>
+                        <tr><td>أورام الدماغ</td><td><span class="price-badge">8,000</span></td></tr>
+                        <tr><td>نزيف داخلي</td><td><span class="price-badge">6,000</span></td></tr>
+                        <tr><td>حصى الكلى</td><td><span class="price-badge">4,000</span></td></tr>
+                        <tr><td>زراعة كلى</td><td><span class="price-badge">6,000</span></td></tr>
+                        <tr><td>معالجة الطلقات النارية</td><td><span class="price-badge">3,000</span></td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="vaccineModal" onclick="closeModalOutside(event, 'vaccineModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('vaccineModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>نموذج حجز اللقاح</h3>
-                <div style="width:35px"></div>
-            </div>
-            <div style="padding: 15px; line-height: 1.8; background: #fafafa; border-radius: 20px; white-space: pre-line; text-align: right;">
-                <b>***``نموذج حجز اللقاح:``*** <:MH:933018599721934929></b> 
-                * الاسم بالدسكورد:
-                * الاسم باللعبة :
-                * العمر :
-                * نوع اللقاح :
-                * رقم  الجرعة   :
-                * وقت اخذ الجرعة :
-            </div>
+    <div class="container" id="rights-page">
+        <div class="page-title"><i class="fa-solid fa-scale-balanced"></i> وثيقة حقوق المواطن العامة</div>
+        <div class="rights-container">
+            <ul class="rights-list">
+                <li class="rights-item"><div class="rights-num">١</div><div class="rights-text">أن يتم إعلامك عن حقوقك بطريقة واضحة ومفهومة.</div></li>
+                <li class="rights-item"><div class="rights-num">٢</div><div class="rights-text">الحصول على أنسب علاج والتمتع بأفضل الخدمات الملائمة له والتي تساعد على معالجة آلامه وتخطي مراحل العلاج بأمان.</div></li>
+                <li class="rights-item"><div class="rights-num">٣</div><div class="rights-text">الحصول على أفضل أوجه الرعاية الصحية التي تحفظ كرامته وحريته وتبث أمل الشفاء في نفسه.</div></li>
+                <li class="rights-item"><div class="rights-num">٤</div><div class="rights-text">التعرف على هوية الفريق الطبي والطاقم الذي يقوم على رعايته وخدمته ومعرفة الطبيب المسؤول المباشر عن معالجته ومتابعة حالته.</div></li>
+                <li class="rights-item"><div class="rights-num">٥</div><div class="rights-text">اختيار الطبيب المعالج وطلب رأي طبي آخر <span style="color: var(--text-muted); font-size: 13px;">(لا تطبق في بعض الأوقات)</span>.</div></li>
+                <li class="rights-item"><div class="rights-num">٦</div><div class="rights-text">أن يتم إعلامك عن وضعك الصحي الحالي، خيارات العلاج، المخاطر المترتبة من العلاج، النتائج المتوقعة من تلقي العلاج، رفض العلاج ومدة الإقامة، بالإضافة إلى حقه في معرفة تكاليف معالجته التقديرية مع حقه في المشاركة الكاملة في اتخاذ القرارات المتعلقة بالعلاج، ويمكنه الخروج من المستشفى على مسؤوليته الخاصة.</div></li>
+                <li class="rights-item"><div class="rights-num">٧</div><div class="rights-text">الحصول على التوعية والتأهيل والإرشاد ليكون قادراً على ممارسة حقه في المشاركة واتخاذ القرارات المتعلقة بعلاجه والتمييز بين الخيارات المتاحة، وله الحق في رفض العلاج أو طلب تخفيف الألم بطريقة فعالة.</div></li>
+                <li class="rights-item"><div class="rights-num">٨</div><div class="rights-text">التأكد من استعمال جميع الحقوق حسب السياسة المعتمدة.</div></li>
+            </ul>
         </div>
     </div>
 
-    <div class="modal-overlay" id="bloodModal" onclick="closeModalOutside(event, 'bloodModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('bloodModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>نموذج تبرع بالدم</h3>
-                <div style="width:35px"></div>
-            </div>
-            <div style="padding: 15px; line-height: 1.8; background: #fafafa; border-radius: 20px; white-space: pre-line; text-align: right;">
-                <b>***``نموذج حجز تبرع بالدم:``*** <:MH:933018599721934929></b> 
-                * الاسم بالدسكورد:
-                * اسمك باللعبة :
-                * العمر : 
-                * فصيلة الدم: 
-                * وقت التبرع:
-            </div>
+    <div class="container" id="rules-page">
+        <div class="page-title" style="color: var(--danger-color);"><i class="fa-solid fa-gavel"></i> قوانين وأنظمة الحجز</div>
+        <div class="rules-container">
+            <ul class="rules-list">
+                <li class="rules-item"><div class="rules-num">١</div><div class="rules-text">يمنع تكرار الحجز.</div></li>
+                <li class="rules-item"><div class="rules-num">٢</div><div class="rules-text">يمنع المنشن منعاً باتاً.</div></li>
+                <li class="rules-item"><div class="rules-num">٣</div><div class="rules-text">يمنع التحدث في شات الحجز.</div></li>
+                <li class="rules-item"><div class="rules-num">٤</div><div class="rules-text">عدم الالتزام بالنموذج يعرضك للرفض.</div></li>
+                <li class="rules-item"><div class="rules-num">٥</div><div class="rules-text">عدم كتابة بياناتك يعرضك للرفض.</div></li>
+                <li class="rules-item"><div class="rules-num">٦</div><div class="rules-text">يمنع إزعاج المسعفين.</div></li>
+                <li class="rules-item"><div class="rules-num">٧</div><div class="rules-text" style="color: #c53030;">يمنع التتقديم مطلوبين العدالة، ومن يملك سوابق، وأعضاء العصابات.</div></li>
+            </ul>
         </div>
     </div>
 
-    <div class="modal-overlay" id="doctorModal" onclick="closeModalOutside(event, 'doctorModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('doctorModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>نموذج حجز دكتور</h3>
-                <div style="width:35px"></div>
-            </div>
-            <div style="padding: 15px; line-height: 1.8; background: #fafafa; border-radius: 20px; white-space: pre-line; text-align: right;">
-                <b>***``نموذج حجز دكتور:``*** <:MH:933018599721934929></b> 
-                * الاسم بالدسكورد:
-                * الاسم باللعبة :
-                * العمر :
-                * ما هي حالتك :
-                * اي دكتور تحتاج :
-                * وقت مقابلة الدكتور:
-                * هل تم مراجعة حالتك خلال ٣ أيام سابقه؟ (نعم / لا ) :
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="checkupModal" onclick="closeModalOutside(event, 'checkupModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="close-btn" onclick="closeModal('checkupModal')"><i class="fa-solid fa-xmark"></i></div>
-                <h3>نموذج حجز فحص</h3>
-                <div style="width:35px"></div>
-            </div>
-            <div style="padding: 15px; line-height: 1.8; background: #fafafa; border-radius: 20px; white-space: pre-line; text-align: right;">
-                <b>***``نموذج حجز فحـص:``*** <:MH:933018599721934929></b> 
-                * الاسم بالدسكورد:
-                * الاسم باللعبة :
-                * العمر :
-                * نوع الفحص ( شامل - جزئي ) : 
-                -# يوجد فحص دم وتحاليل 
-                * وقت الفحص:
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>جميع الحقوق محفوظة © وزارة الصحة 2026</p>
+    </footer>
 
     <script>
-        // --- سكربت الوقت والتاريخ الرقمي ---
-        function updateClock() {
-            const now = new Date();
-            const dateStr = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`;
-            let h = now.getHours();
-            let m = String(now.getMinutes()).padStart(2, '0');
-            let s = String(now.getSeconds()).padStart(2, '0');
-            let ampm = h >= 12 ? 'م' : 'ص';
-            h = h % 12 || 12;
-            const timeStr = `${String(h).padStart(2, '0')}:${m}:${s} ${ampm}`;
-            document.getElementById('display-date').textContent = dateStr;
-            document.getElementById('display-time').textContent = timeStr;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+        // إخفاء شاشة التحميل
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(() => { loader.classList.add('fade-out'); }, 600);
+        });
 
-        function openModal(id) { 
-            const m = document.getElementById(id);
-            if(m) { m.style.display = 'flex'; setTimeout(() => m.classList.add('active'), 10); }
-        }
+        const mainPage = document.getElementById('main-page');
+        const servicesPage = document.getElementById('services-page');
+        const statusPage = document.getElementById('status-page');
+        const aboutPage = document.getElementById('about-page');
+        const leadershipPage = document.getElementById('leadership-page');
+        const pricesPage = document.getElementById('prices-page');
+        const rightsPage = document.getElementById('rights-page');
+        const rulesPage = document.getElementById('rules-page');
+        
+        const backToMainBtn = document.getElementById('backToMainBtn');
+        const backToServicesBtn = document.getElementById('backToServicesBtn');
+        const backToAboutBtn = document.getElementById('backToAboutBtn');
 
-        function closeModal(id) { 
-            const m = document.getElementById(id);
-            if(m) { m.classList.remove('active'); setTimeout(() => { m.style.display = 'none'; resetModals(); }, 400); }
-        }
-
-        function closeModalOutside(e, id) { if(e.target.id === id) closeModal(id); }
-
-        function showView(hideId, showId) {
-            document.getElementById(hideId).style.display = 'none';
-            document.getElementById(showId).style.display = 'block';
+        function showStatusPage() {
+            hideAllPages();
+            statusPage.style.display = 'block';
+            backToMainBtn.style.display = 'block';
         }
 
-        function resetModals() {
-            const views = ['aboutMainView', 'servicesMainView', 'operationsCatsView'];
-            views.forEach(v => { if(document.getElementById(v)) document.getElementById(v).style.display = 'block'; });
-            const subs = document.querySelectorAll('.sub-view');
-            subs.forEach(s => { if(!views.includes(s.id)) s.style.display = 'none'; });
+        function showAboutPage() {
+            hideAllPages();
+            aboutPage.style.display = 'block';
+            backToMainBtn.style.display = 'block';
+            animateContainer(aboutPage);
         }
 
-        let idx = 0;
-        function move(n) {
-            const s = document.getElementById('imgSlider');
-            idx = (idx + n + 3) % 3;
-            s.style.transform = `translateX(${idx * 100}%)`;
+        function showLeadershipPage() {
+            hideAllPages();
+            leadershipPage.style.display = 'block';
+            backToAboutBtn.style.display = 'block'; 
+        }
+
+        function showServicesPage() {
+            hideAllPages();
+            servicesPage.style.display = 'block';
+            backToMainBtn.style.display = 'block';
+            animateContainer(servicesPage);
+        }
+
+        function showMainPage() {
+            hideAllPages();
+            mainPage.style.display = 'block';
+            animateContainer(mainPage);
+        }
+
+        function showPricesPage() {
+            hideAllPages();
+            pricesPage.style.display = 'block';
+            backToServicesBtn.style.display = 'block';
+        }
+
+        function showRightsPage() {
+            hideAllPages();
+            rightsPage.style.display = 'block';
+            backToServicesBtn.style.display = 'block';
+        }
+
+        function showRulesPage() {
+            hideAllPages();
+            rulesPage.style.display = 'block';
+            backToServicesBtn.style.display = 'block';
+        }
+
+        function backToServices() {
+            hideAllPages();
+            servicesPage.style.display = 'block';
+            backToMainBtn.style.display = 'block';
+            animateContainer(servicesPage);
+        }
+
+        function backToAbout() {
+            hideAllPages();
+            aboutPage.style.display = 'block';
+            backToMainBtn.style.display = 'block';
+            animateContainer(aboutPage);
+        }
+
+        function hideAllPages() {
+            mainPage.style.display = 'none';
+            servicesPage.style.display = 'none';
+            statusPage.style.display = 'none';
+            aboutPage.style.display = 'none';
+            leadershipPage.style.display = 'none';
+            pricesPage.style.display = 'none';
+            rightsPage.style.display = 'none';
+            rulesPage.style.display = 'none';
+            
+            backToMainBtn.style.display = 'none';
+            backToServicesBtn.style.display = 'none';
+            backToAboutBtn.style.display = 'none';
+        }
+
+        function animateContainer(container) {
+            container.classList.remove('animate-cards');
+            void container.offsetWidth; 
+            container.classList.add('animate-cards');
+        }
+
+        function switchTab(evt, tabId) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
     </script>
 </body>
